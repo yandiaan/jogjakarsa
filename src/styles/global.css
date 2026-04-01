@@ -4,10 +4,19 @@
 
 :root {
 	color-scheme: dark;
+	--night: #040913;
+	--ink: #08111f;
+	--charcoal: #0b1118;
+	--mist: #f4efe7;
+	--sand: #dcc8aa;
+	--sun: #f4c17a;
+	--clay: #d27a57;
+	--lagoon: #92b9ff;
+	--cypress: #7dc5ad;
 	--story-bg:
-		radial-gradient(circle at top left, rgba(244, 193, 122, 0.1), transparent 24%),
-		radial-gradient(circle at top right, rgba(146, 185, 255, 0.1), transparent 28%),
-		linear-gradient(180deg, #09101a 0%, #08111f 42%, #050911 100%);
+		radial-gradient(circle at top left, rgba(244, 193, 122, 0.12), transparent 24%),
+		radial-gradient(circle at top right, rgba(146, 185, 255, 0.12), transparent 28%),
+		linear-gradient(180deg, #0b1220 0%, #08111f 42%, #040913 100%);
 }
 
 @layer base {
@@ -19,7 +28,9 @@
 		margin: 0;
 		min-height: 100vh;
 		background-image: var(--story-bg);
-		font-family: 'Manrope', sans-serif;
+		font-family: 'Alegreya Sans', sans-serif;
+		color: var(--mist);
+		background-color: var(--night);
 	}
 
 	h1,
@@ -28,8 +39,9 @@
 	h4,
 	h5,
 	h6 {
-		font-family: 'Space Grotesk', sans-serif;
-		font-weight: 700;
+		font-family: 'EB Garamond', serif;
+		font-weight: 400;
+		letter-spacing: -0.04em;
 	}
 
 	p {
@@ -40,18 +52,60 @@
 		color: inherit;
 		text-decoration: none;
 	}
+
+	button {
+		font: inherit;
+	}
+
+	img {
+		display: block;
+		max-width: 100%;
+	}
 }
 
 @layer components {
 	.eyebrow {
-		@apply inline-flex w-fit items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-mist/70 backdrop-blur;
+		display: inline-flex;
+		width: fit-content;
+		align-items: center;
+		gap: 0.65rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+		padding: 0.7rem 1rem;
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.28em;
+		text-transform: uppercase;
+		color: rgba(244, 239, 231, 0.74);
+		backdrop-filter: blur(18px);
+	}
+
+	.eyebrow::before {
+		content: '';
+		height: 0.55rem;
+		width: 0.55rem;
+		border-radius: 999px;
+		background: linear-gradient(135deg, var(--sun), var(--lagoon));
+		box-shadow: 0 0 22px rgba(244, 193, 122, 0.45);
 	}
 
 	.glass-panel {
-		@apply border border-white/10 bg-white/5 shadow-glow backdrop-blur-2xl;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		background:
+			linear-gradient(135deg, rgba(220, 200, 170, 0.08), rgba(255, 255, 255, 0.03)),
+			rgba(8, 17, 31, 0.34);
+		backdrop-filter: blur(22px);
 		box-shadow:
 			0 1px 0 rgba(255, 255, 255, 0.12) inset,
 			0 36px 120px rgba(0, 0, 0, 0.4);
+	}
+
+	.glass-pill {
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		background: rgba(255, 255, 255, 0.08);
+		backdrop-filter: blur(18px);
+		box-shadow: 0 12px 40px rgba(4, 9, 19, 0.22);
 	}
 
 	.story-grid {
@@ -67,6 +121,32 @@
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.65'/%3E%3C/svg%3E");
 		mix-blend-mode: soft-light;
 	}
+
+	.section-shell {
+		position: relative;
+		isolation: isolate;
+		overflow: clip;
+	}
+
+	.heritage-nav {
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(18px);
+	}
+
+	.heritage-mark {
+		border: 1px solid rgba(220, 200, 170, 0.18);
+		background: linear-gradient(135deg, rgba(220, 200, 170, 0.12), rgba(255, 255, 255, 0.04));
+		backdrop-filter: blur(16px);
+	}
+
+	.heritage-grid {
+		background-image:
+			linear-gradient(rgba(220, 200, 170, 0.08) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(220, 200, 170, 0.08) 1px, transparent 1px);
+		background-size: 84px 84px;
+		background-position: center;
+		mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.85), transparent 88%);
+	}
 }
 
 @layer utilities {
@@ -80,5 +160,10 @@
 
 	.mask-fade-bottom {
 		mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
+	}
+
+	.cinematic-copy {
+		max-width: 42rem;
+		text-wrap: pretty;
 	}
 }

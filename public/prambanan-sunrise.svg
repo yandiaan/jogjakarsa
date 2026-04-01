@@ -1,0 +1,48 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="800" y1="0" x2="800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18253D"/>
+      <stop offset="0.46" stop-color="#6F4F57"/>
+      <stop offset="0.72" stop-color="#E09A66"/>
+      <stop offset="1" stop-color="#F4D5A6"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(860 400) rotate(90) scale(320 320)">
+      <stop stop-color="#FFF1CF"/>
+      <stop offset="0.52" stop-color="#F4C17A" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#F4C17A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ground" x1="800" y1="640" x2="800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1626" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#0A1221"/>
+      <stop offset="1" stop-color="#040913"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#sky)"/>
+  <rect width="1600" height="1200" fill="url(#sun)"/>
+  <path d="M0 765C182 716 334 692 489 700C650 710 785 755 944 759C1084 763 1238 729 1600 660V1200H0V765Z" fill="#182335" fill-opacity="0.44"/>
+  <path d="M0 862C264 818 420 812 604 832C778 850 928 904 1120 901C1275 899 1419 864 1600 792V1200H0V862Z" fill="url(#ground)"/>
+  <g opacity="0.95">
+    <path d="M519 882H655V1098H519V882Z" fill="#08111F"/>
+    <path d="M545 810L587 700L629 810H545Z" fill="#08111F"/>
+    <path d="M535 883L587 752L639 883H535Z" fill="#08111F"/>
+    <path d="M568 734H606V1110H568V734Z" fill="#08111F"/>
+
+    <path d="M719 756H901V1118H719V756Z" fill="#08111F"/>
+    <path d="M755 628L810 470L865 628H755Z" fill="#08111F"/>
+    <path d="M739 755L810 564L881 755H739Z" fill="#08111F"/>
+    <path d="M784 520H836V1145H784V520Z" fill="#08111F"/>
+    <path d="M701 1118H919V1158H701V1118Z" fill="#08111F"/>
+
+    <path d="M965 844H1087V1096H965V844Z" fill="#08111F"/>
+    <path d="M987 772L1026 664L1065 772H987Z" fill="#08111F"/>
+    <path d="M978 845L1026 726L1074 845H978Z" fill="#08111F"/>
+    <path d="M1008 700H1044V1112H1008V700Z" fill="#08111F"/>
+  </g>
+  <g opacity="0.28" stroke="#F4EFE7">
+    <path d="M810 420V188"/>
+    <path d="M692 446L562 286"/>
+    <path d="M929 446L1059 286"/>
+    <path d="M640 562L476 498"/>
+    <path d="M980 562L1144 498"/>
+  </g>
+</svg>
