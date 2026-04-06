@@ -61,7 +61,7 @@ export default function HeroSection() {
 				.to('[data-hero-background]', { scale: 1.12, yPercent: 8, autoAlpha: 0.46 }, 0)
 				.to('[data-hero-overlay]', { opacity: 0.88 }, 0)
 				.to('[data-hero-copy-shell]', { yPercent: -12, autoAlpha: 0.12 }, 0)
-				.to('[data-hero-info-shell]', { yPercent: 10, autoAlpha: 0.3 }, 0);
+				.to('[data-hero-info-shell]', { yPercent: 10 }, 0);
 
 			return undefined;
 		},
@@ -113,13 +113,13 @@ export default function HeroSection() {
 				</div>
 
 				<div data-hero-info-shell className="grid gap-4 sm:max-w-xl sm:justify-self-end">
-					<div data-hero-meta className="glass-panel story-grid overflow-hidden rounded-[2rem] p-5 md:p-6">
+					<div data-hero-meta className="story-grid overflow-hidden rounded-[2rem] border border-white/10 p-5 md:p-6">
 						<div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
 							<div>
 								<p className="font-accent text-xs uppercase tracking-[0.24em] text-mist/42">Curatorial Frame</p>
 								<h2 className="mt-2 font-display text-3xl leading-none text-mist md:text-4xl">Warisan sebagai Ruang</h2>
 							</div>
-							<div className="glass-pill rounded-full px-4 py-2 text-xs uppercase tracking-[0.22em] text-mist/56">
+							<div className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-mist/56">
 								Dark Exhibition Mode
 							</div>
 						</div>
@@ -129,11 +129,11 @@ export default function HeroSection() {
 					</div>
 
 					<div className="grid gap-4 sm:grid-cols-2">
-						<div data-hero-meta className="glass-panel rounded-[1.6rem] p-4">
+						<div data-hero-meta className="rounded-[1.6rem] border border-white/10 p-4">
 							<p className="font-accent text-xs uppercase tracking-[0.22em] text-mist/42">Tone</p>
 							<p className="mt-3 text-sm leading-relaxed text-mist/74">Elegan, kontemplatif, dan sedikit teatrikal seperti ruang pamer yang tenang.</p>
 						</div>
-						<div data-hero-meta className="glass-panel rounded-[1.6rem] p-4">
+						<div data-hero-meta className="rounded-[1.6rem] border border-white/10 p-4">
 							<p className="font-accent text-xs uppercase tracking-[0.22em] text-mist/42">Motion</p>
 							<p className="mt-3 text-sm leading-relaxed text-mist/74">Reveal halus, zoom lambat pada citra, dan scroll yang terasa seperti kuratorial walkthrough.</p>
 						</div>
