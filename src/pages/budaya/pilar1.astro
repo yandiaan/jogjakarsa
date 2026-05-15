@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNavbar from '../../components/SiteNavbar';
+import SiteFooter from '../../components/SiteFooter';
+import SmoothScroll from '../../components/SmoothScroll';
+import Pilar1Content from '../../components/budaya/Pilar1Content';
+---
+
+<BaseLayout
+	title="Pilar 1: Arsitektur & Tata Ruang - jogjakarsa.id"
+	description="Manifesto spasial dari Sumbu Filosofis, arsitektur keraton, hingga mahakarya litikum yang merefleksikan tatanan sosial dan kosmologi Jogja."
+>
+	<SiteNavbar client:load />
+
+	<main class="relative isolate">
+		<Pilar1Content client:load />
+		<SiteFooter client:load />
+	</main>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNavbar from '../../components/SiteNavbar';
+import SiteFooter from '../../components/SiteFooter';
+import Pilar2Content from '../../components/budaya/Pilar2Content';
+---
+
+<BaseLayout
+	title="Pilar 2: Seni Pertunjukan & Bunyi - jogjakarsa.id"
+	description="Gerak tubuh klasik sebagai meditasi kinetik dan gamelan sebagai logika bunyi yang mengatur ritme semesta dan ketenangan jiwa."
+>
+	<SiteNavbar client:load />
+
+	<main class="relative isolate">
+		<Pilar2Content client:load />
+		<SiteFooter client:load />
+	</main>
+</BaseLayout>
