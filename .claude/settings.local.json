@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"D:\\\\development\\\\jogjakarsa\" -Force | Select-Object Name, @{Name=\"Type\";Expression={if\\($_.PSIsContainer\\){\"DIR\"}else{\"FILE\"}}} | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\development\\\\jogjakarsa\\\\src\" -Recurse -Force | Select-Object FullName, @{Name=\"Type\";Expression={if\\($_.PSIsContainer\\){\"DIR\"}else{\"FILE\"}}} | Format-Table -AutoSize)",
+      "Skill(opsx:propose)",
+      "Bash(openspec new *)",
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\development\\\\jogjakarsa\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "PowerShell(head *)",
+      "Bash(npx tsc *)",
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)",
+      "Bash(npx astro *)",
+      "Bash(mkdir -p \"d:\\\\development\\\\jogjakarsa\\\\src\\\\components\\\\ui\")"
+    ],
+    "additionalDirectories": [
+      "d:\\development\\jogjakarsa\\src\\components"
+    ]
+  }
+}

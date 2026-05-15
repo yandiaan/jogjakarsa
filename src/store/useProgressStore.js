@@ -11,6 +11,8 @@ const addVisitedSection = (sections, nextSection) => {
 };
 
 export const useProgressStore = create((set) => ({
+	lenisInstance: null,
+	setLenisInstance: (instance) => set({ lenisInstance: instance }),
 	progress: 0,
 	visitedSections: [],
 	awanVisible: false,

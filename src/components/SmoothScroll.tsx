@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 
 import { ensureGsapPlugins, gsap, ScrollTrigger } from '../lib/gsap';
+import { useProgressStore } from '../store/useProgressStore';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 
 export default function SmoothScroll() {
 	const prefersReducedMotion = usePrefersReducedMotion();
+	const setLenisInstance = useProgressStore((s: any) => s.setLenisInstance);
 
 	useEffect(() => {
 		if (prefersReducedMotion) {
@@ -21,6 +23,8 @@ export default function SmoothScroll() {
 			touchMultiplier: 1.1,
 		});
 
+		setLenisInstance(lenis);
+
 		const updateScrollTrigger = () => ScrollTrigger.update();
 		const raf = (time: number) => {
 			lenis.raf(time * 1000);
@@ -35,6 +39,7 @@ export default function SmoothScroll() {
 			lenis.off('scroll', updateScrollTrigger);
 			gsap.ticker.remove(raf);
 			lenis.destroy();
+			setLenisInstance(null);
 		};
 	}, [prefersReducedMotion]);
 
