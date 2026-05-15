@@ -18,9 +18,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 	<main class="relative isolate">
 		<HeroSection client:load />
-		<PhilosophySection client:load />
-		<TerritoryBento client:load />
-		<PillarsSection client:load />
-		<SiteFooter client:load />
+		<PhilosophySection client:idle />
+		<TerritoryBento client:idle />
+		<PillarsSection client:idle />
+		<SiteFooter client:idle />
 	</main>
 </BaseLayout>

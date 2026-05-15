@@ -17,10 +17,11 @@ export default function SmoothScroll() {
 		ensureGsapPlugins();
 
 		const lenis = new Lenis({
-			duration: 1.15,
+			lerp: 0.1,
 			smoothWheel: true,
 			syncTouch: false,
 			touchMultiplier: 1.1,
+			wheelMultiplier: 1,
 		});
 
 		setLenisInstance(lenis);

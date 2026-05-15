@@ -59,7 +59,7 @@ function AccordionItem({ item, isActive, onHover }: AccordionItemProps) {
 			style={{
 				height: '390px',
 				width: isActive ? '290px' : '46px',
-				transition: 'width 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+				transition: 'width 380ms cubic-bezier(0.4, 0, 0.2, 1)',
 				border: isActive
 					? '1px solid rgba(244,193,122,0.28)'
 					: '1px solid rgba(244,239,231,0.07)',
@@ -70,9 +70,11 @@ function AccordionItem({ item, isActive, onHover }: AccordionItemProps) {
 			<img
 				src={item.imageUrl}
 				alt={item.title}
+				loading="lazy"
+				decoding="async"
 				className="absolute inset-0 h-full w-full object-cover"
 				style={{
-					transition: 'transform 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+					transition: 'transform 480ms cubic-bezier(0.4, 0, 0.2, 1)',
 					transform: isActive ? 'scale(1.0)' : 'scale(1.08)',
 				}}
 				onError={(e) => {
@@ -86,7 +88,7 @@ function AccordionItem({ item, isActive, onHover }: AccordionItemProps) {
 				className="absolute inset-0"
 				style={{
 					background: `rgba(4,9,19,${isActive ? 0.3 : 0.7})`,
-					transition: 'background 800ms ease',
+					transition: 'background 380ms ease',
 				}}
 			/>
 
@@ -142,7 +144,7 @@ function AccordionItem({ item, isActive, onHover }: AccordionItemProps) {
 }
 
 export function HeritageAccordion() {
-	const [activeIndex, setActiveIndex] = useState(4);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	return (
 		<div className="flex flex-row items-center gap-2">

@@ -1,6 +1,6 @@
 import type { RefObject } from 'react';
 
-import { ensureGsapPlugins, gsap } from '../../lib/gsap';
+import { ensureGsapPlugins, gsap, ScrollTrigger } from '../../lib/gsap';
 import { useGsapContext } from './useGsapContext';
 import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 
@@ -34,28 +34,29 @@ export const useScrollReveal = (
 			}
 
 			if (prefersReducedMotion) {
-				gsap.set(nodes, { autoAlpha: 1, y: 0, clearProps: 'filter' });
+				gsap.set(nodes, { autoAlpha: 1, y: 0 });
 				return undefined;
 			}
 
-			nodes.forEach((node, index) => {
-				gsap.fromTo(
-					node,
-					{ autoAlpha: 0, y, filter: 'blur(8px)' },
-					{
+			// Pre-set the hidden state so static HTML doesn't flash visible
+			// before the batch trigger fires.
+			gsap.set(nodes, { autoAlpha: 0, y });
+
+			ScrollTrigger.batch(nodes, {
+				start,
+				once: true,
+				interval: 0.12,
+				batchMax: 8,
+				onEnter: (batch) => {
+					gsap.to(batch, {
 						autoAlpha: 1,
 						y: 0,
-						filter: 'blur(0px)',
-						duration: 0.9,
-						delay: index * stagger,
+						duration: 0.7,
+						stagger,
 						ease: 'power3.out',
-						scrollTrigger: {
-							trigger: node,
-							start,
-							onEnter: () => undefined,
-						},
-					},
-				);
+						overwrite: 'auto',
+					});
+				},
 			});
 
 			return undefined;

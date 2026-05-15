@@ -7,51 +7,99 @@ import { ensureGsapPlugins, prefersReducedMotion, ScrollTrigger } from '../lib/g
 
 export default function HeroSection() {
 	const sectionRef = useRef<HTMLElement>(null);
-	const [scrollProgress, setScrollProgress] = useState(0);
+	const cardRef = useRef<HTMLDivElement>(null);
+	const bgRef = useRef<HTMLDivElement>(null);
+	const cardOverlayRef = useRef<HTMLDivElement>(null);
+	const cardAccentRef = useRef<HTMLDivElement>(null);
+	const titleWrapRef = useRef<HTMLDivElement>(null);
+	const titleLeftRef = useRef<HTMLHeadingElement>(null);
+	const titleRightRef = useRef<HTMLHeadingElement>(null);
+	const metaWrapRef = useRef<HTMLDivElement>(null);
+	const metaLeftRef = useRef<HTMLDivElement>(null);
+	const metaRightRef = useRef<HTMLDivElement>(null);
+	const scrollHintRef = useRef<HTMLDivElement>(null);
+	const heroOverlayRef = useRef<HTMLDivElement>(null);
+
 	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {
 		const check = () => setIsMobile(window.innerWidth < 768);
 		check();
-		window.addEventListener('resize', check);
+		window.addEventListener('resize', check, { passive: true });
 		return () => window.removeEventListener('resize', check);
 	}, []);
 
 	useEffect(() => {
 		if (!sectionRef.current) return;
 
+		const applyProgress = (progress: number) => {
+			const rawP = Math.min(progress * 2.0, 1);
+			const heroRatio = Math.min(Math.max((progress - 0.55) / 0.13, 0), 1);
+
+			const mediaW = isMobile ? 260 + rawP * 700 : 380 + rawP * 1230;
+			const mediaH = isMobile ? 340 + rawP * 260 : 440 + rawP * 440;
+			const textShift = rawP * (isMobile ? 165 : 148);
+			const bgOpacity = Math.max(1 - rawP * 1.45, 0);
+			const titleOpacity = Math.max(1 - rawP * 2.9, 0);
+			const cardOverlay = Math.max(0.62 - rawP * 0.52, 0.1);
+			const cardAccentOpacity = Math.max(1 - rawP * 2.2, 0);
+			const metaOpacity = Math.max(1 - rawP * 5.5, 0);
+
+			const card = cardRef.current;
+			if (card) {
+				card.style.width = `${mediaW}px`;
+				card.style.height = `${mediaH}px`;
+			}
+			if (bgRef.current) bgRef.current.style.opacity = String(bgOpacity);
+			if (cardOverlayRef.current) cardOverlayRef.current.style.background = `rgba(4,9,19,${cardOverlay.toFixed(2)})`;
+			if (cardAccentRef.current) cardAccentRef.current.style.opacity = String(cardAccentOpacity);
+			if (titleWrapRef.current) titleWrapRef.current.style.opacity = String(titleOpacity);
+			if (titleLeftRef.current) titleLeftRef.current.style.transform = `translate3d(-${textShift}vw,0,0)`;
+			if (titleRightRef.current) titleRightRef.current.style.transform = `translate3d(${textShift}vw,0,0)`;
+			if (metaWrapRef.current) metaWrapRef.current.style.opacity = String(metaOpacity);
+			if (metaLeftRef.current) metaLeftRef.current.style.transform = `translate3d(-${textShift * 0.38}vw,0,0)`;
+			if (metaRightRef.current) metaRightRef.current.style.transform = `translate3d(${textShift * 0.38}vw,0,0)`;
+			if (scrollHintRef.current) scrollHintRef.current.style.opacity = rawP < 0.04 ? '1' : '0';
+			if (heroOverlayRef.current) {
+				heroOverlayRef.current.style.opacity = String(heroRatio);
+				heroOverlayRef.current.style.pointerEvents = heroRatio > 0.05 ? 'auto' : 'none';
+			}
+		};
+
 		if (prefersReducedMotion()) {
-			setScrollProgress(1);
+			applyProgress(1);
 			return;
 		}
 
 		ensureGsapPlugins();
+		applyProgress(0);
+
+		const getVideo = () => sectionRef.current?.querySelector('video') ?? null;
 
 		const trigger = ScrollTrigger.create({
 			trigger: sectionRef.current,
 			start: 'top top',
 			end: 'bottom bottom',
 			scrub: true,
-			onUpdate: (self) => setScrollProgress(self.progress),
+			onUpdate: (self) => applyProgress(self.progress),
+			onLeave: () => {
+				// Hero is past — stop decoding the drone footage to free GPU
+				// for the next section's first paint.
+				getVideo()?.pause();
+			},
+			onEnterBack: () => {
+				const v = getVideo();
+				if (v?.paused) void v.play().catch(() => undefined);
+			},
 		});
 
-		return () => trigger.kill();
-	}, []);
+		return () => {
+			trigger.kill();
+		};
+	}, [isMobile]);
 
-	// rawP completes at ~62 % of section scroll, leaving a "resting" phase at full expansion
-	const rawP = Math.min(scrollProgress * 1.62, 1);
-
-	// heroRatio: fades in during the resting phase (scrollProgress 0.72 → 0.92)
-	const heroRatio = Math.min(Math.max((scrollProgress - 0.72) / 0.2, 0), 1);
-
-	const mediaW = isMobile ? 260 + rawP * 700 : 380 + rawP * 1230;
-	const mediaH = isMobile ? 340 + rawP * 260 : 440 + rawP * 440;
-	const textShift = rawP * (isMobile ? 165 : 148);
-	const bgOpacity = Math.max(1 - rawP * 1.45, 0);
-	const titleOpacity = Math.max(1 - rawP * 2.9, 0);
-	const cardOverlay = Math.max(0.62 - rawP * 0.52, 0.1);
-	const cardRadius = 20;
-	const cardScale = 1.07 - rawP * 0.07;
+	const initialW = isMobile ? 260 : 380;
+	const initialH = isMobile ? 340 : 440;
 
 	return (
 		<>
@@ -60,20 +108,21 @@ export default function HeroSection() {
 				id="top"
 				ref={sectionRef}
 				className="relative"
-				style={{ height: '300vh' }}
+				style={{ height: '400vh' }}
 			>
-				<div className="sticky top-0 h-screen overflow-hidden">
+				<div className="sticky top-0 h-screen overflow-hidden" style={{ contain: 'layout paint' }}>
 
 					{/* Always-dark base so the card has a canvas as bg fades */}
 					<div className="absolute inset-0 z-0" style={{ background: 'var(--night)' }} />
 
 					{/* Background image — fades out as card expands */}
-					<div className="absolute inset-0 z-0" style={{ opacity: bgOpacity }}>
+					<div ref={bgRef} className="absolute inset-0 z-0" style={{ opacity: 1, willChange: 'opacity' }}>
 						<img
 							src="/prambanan-sunrise.webp"
 							alt="Warisan budaya Yogyakarta"
 							className="h-full w-full object-cover"
 							fetchPriority="high"
+							decoding="async"
 						/>
 						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,19,0.22),rgba(4,9,19,0.6)_60%,rgba(4,9,19,0.96))]" />
 						<div
@@ -88,14 +137,17 @@ export default function HeroSection() {
 
 					{/* Expanding media card ─────────────────────────── */}
 					<div
+						ref={cardRef}
 						className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
 						style={{
-							width: `${mediaW}px`,
-							height: `${mediaH}px`,
+							width: `${initialW}px`,
+							height: `${initialH}px`,
 							maxWidth: '98vw',
 							maxHeight: '93vh',
-							borderRadius: `${cardRadius}px`,
-							boxShadow: `0 ${Math.round(20 - rawP * 14)}px ${Math.round(80 - rawP * 40)}px rgba(0,0,0,${(0.5 - rawP * 0.18).toFixed(2)})`,
+							borderRadius: '20px',
+							boxShadow: '0 16px 60px rgba(0,0,0,0.42)',
+							willChange: 'width, height',
+							contain: 'layout paint',
 						}}
 					>
 						<video
@@ -104,49 +156,56 @@ export default function HeroSection() {
 							loop
 							muted
 							playsInline
+							preload="metadata"
 							className="h-full w-full object-cover"
-							style={{ transform: `scale(${cardScale})`, transformOrigin: 'center center' }}
 						/>
 						{/* Darkening layer lifts as card expands */}
 						<div
+							ref={cardOverlayRef}
 							className="absolute inset-0"
-							style={{ background: `rgba(4,9,19,${cardOverlay.toFixed(2)})` }}
+							style={{ background: 'rgba(4,9,19,0.62)' }}
 						/>
 						{/* Warm top accent — fades with title */}
 						<div
+							ref={cardAccentRef}
 							className="absolute inset-0"
 							style={{
 								background: 'radial-gradient(ellipse at 50% -10%, rgba(244,193,122,0.1), transparent 52%)',
-								opacity: Math.max(1 - rawP * 2.2, 0),
+								opacity: 1,
 							}}
 						/>
 					</div>
 
 					{/* Split title ─────────────────────────────────── */}
 					<div
+						ref={titleWrapRef}
 						className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center gap-1 select-none md:gap-2"
-						style={{ opacity: titleOpacity }}
+						style={{ opacity: 1, willChange: 'opacity' }}
 					>
 						<h1
+							ref={titleLeftRef}
 							className="font-display text-mist"
 							style={{
 								fontSize: 'clamp(3.4rem, 9.5vw, 9rem)',
 								lineHeight: 1,
 								letterSpacing: '-0.04em',
-								transform: `translateX(-${textShift}vw)`,
+								transform: 'translate3d(0,0,0)',
 								mixBlendMode: 'difference',
+								willChange: 'transform',
 							}}
 						>
 							Jogja
 						</h1>
 						<h1
+							ref={titleRightRef}
 							className="font-display text-mist"
 							style={{
 								fontSize: 'clamp(3.4rem, 9.5vw, 9rem)',
 								lineHeight: 1,
 								letterSpacing: '-0.04em',
-								transform: `translateX(${textShift}vw)`,
+								transform: 'translate3d(0,0,0)',
 								mixBlendMode: 'difference',
+								willChange: 'transform',
 							}}
 						>
 							Karsa
@@ -155,34 +214,39 @@ export default function HeroSection() {
 
 					{/* Corner meta labels ───────────────────────────── */}
 					<div
+						ref={metaWrapRef}
 						className="pointer-events-none absolute bottom-[10vh] z-20 flex w-full items-end justify-between px-8 select-none md:px-16"
-						style={{ opacity: Math.max(1 - rawP * 5.5, 0) }}
+						style={{ opacity: 1, willChange: 'opacity' }}
 					>
-						<div style={{ transform: `translateX(-${textShift * 0.38}vw)` }}>
+						<div ref={metaLeftRef} style={{ transform: 'translate3d(0,0,0)', willChange: 'transform' }}>
 							<p className="text-[0.58rem] uppercase tracking-[0.32em] text-mist/38">Lokasi</p>
 							<p className="mt-0.5 font-display text-sm text-mist/55">Yogyakarta, Indonesia</p>
 						</div>
-						<div className="text-right" style={{ transform: `translateX(${textShift * 0.38}vw)` }}>
+						<div ref={metaRightRef} className="text-right" style={{ transform: 'translate3d(0,0,0)', willChange: 'transform' }}>
 							<p className="text-[0.58rem] uppercase tracking-[0.32em] text-mist/38">Mode</p>
 							<p className="mt-0.5 font-display text-sm text-mist/55">Exhibition Mode</p>
 						</div>
 					</div>
 
 					{/* Scroll hint ────────────────────────────────── */}
-					{rawP < 0.04 && (
-						<div className="pointer-events-none absolute bottom-[8vh] left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2 select-none">
-							<p className="text-[0.6rem] uppercase tracking-[0.3em] text-mist/44">Gulir untuk menjelajah</p>
-							<ChevronDown className="h-4 w-4 animate-bounce text-sun/55" strokeWidth={1.5} />
-						</div>
-					)}
+					<div
+						ref={scrollHintRef}
+						className="pointer-events-none absolute bottom-[8vh] left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2 select-none"
+						style={{ opacity: 1, transition: 'opacity 200ms ease' }}
+					>
+						<p className="text-[0.6rem] uppercase tracking-[0.3em] text-mist/44">Gulir untuk menjelajah</p>
+						<ChevronDown className="h-4 w-4 animate-bounce text-sun/55" strokeWidth={1.5} />
+					</div>
 
 					{/* ─── HERO COPY OVERLAY ─────────────────────────── */}
 					{/* Fades in over the fullscreen card once rawP = 1 */}
 					<div
+						ref={heroOverlayRef}
 						className="absolute inset-0 z-30 flex flex-col items-center justify-center"
 						style={{
-							opacity: heroRatio,
-							pointerEvents: heroRatio > 0.05 ? 'auto' : 'none',
+							opacity: 0,
+							pointerEvents: 'none',
+							willChange: 'opacity',
 						}}
 					>
 						{/* Readability vignette */}
