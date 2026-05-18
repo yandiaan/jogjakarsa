@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNavbar from '../../components/SiteNavbar';
+import SiteFooter from '../../components/SiteFooter';
+import Pilar3Content from '../../components/budaya/Pilar3Content';
+---
+
+<BaseLayout
+	title="Pilar 3: Tata Busana & Kriya - jogjakarsa.id"
+	description="Goresan motif batik, seni tempa keris, hingga filigree perak Kotagede yang menyimpan kode visual dan kedaulatan diri."
+>
+	<SiteNavbar client:load />
+
+	<main class="relative isolate">
+		<Pilar3Content client:load />
+		<SiteFooter client:load />
+	</main>
+</BaseLayout>
