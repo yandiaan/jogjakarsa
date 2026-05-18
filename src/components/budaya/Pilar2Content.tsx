@@ -12,6 +12,7 @@ export default function Pilar2Content() {
       heroAlt="Seni Pertunjukan Jogja"
       sections={pilar2Data.sections}
       prevPilar={{ href: '/budaya/pilar1', label: 'Pilar 1: Arsitektur & Tata Ruang' }}
+      nextPilar={{ href: '/budaya/pilar3', label: 'Pilar 3: Tata Busana & Kriya' }}
     />
   );
 }
