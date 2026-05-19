@@ -74,6 +74,8 @@ export default function BudayaPillarsSection() {
 const pilarLinks: Record<string, string> = {
   pilar1: '/budaya/pilar1',
   pilar2: '/budaya/pilar2',
+  pilar3: '/budaya/pilar3',
+  pilar4: '/budaya/pilar4',
 };
 
 function PillarCard({ pillar, gridClass }: { pillar: any; gridClass: string }) {
