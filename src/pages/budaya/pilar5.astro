@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNavbar from '../../components/SiteNavbar';
+import SiteFooter from '../../components/SiteFooter';
+import Pilar5Content from '../../components/budaya/Pilar5Content';
+---
+
+<BaseLayout
+	title="Pilar 5: Tradisi & Upacara - jogjakarsa.id"
+	description="Labuhan, Sekaten & Grebeg, Mubeng Beteng, dan ritual-ritual sakral yang menjaga keseimbangan ekosistem dan merawat memori peradaban Mataram."
+>
+	<SiteNavbar client:load />
+
+	<main class="relative isolate">
+		<Pilar5Content client:load />
+		<SiteFooter client:load />
+	</main>
+</BaseLayout>
