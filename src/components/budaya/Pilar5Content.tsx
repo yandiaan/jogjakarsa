@@ -12,7 +12,7 @@ export default function Pilar5Content() {
       heroAlt="Tradisi & Upacara Jogja"
       sections={pilar5Data.sections}
       prevPilar={{ href: '/budaya/pilar4', label: 'Pilar 4: Bahasa & Aksara' }}
-      nextPilar={{ href: '/budaya/pilar6', label: 'Pilar 6: Kuliner & Jamu' }}
+      nextPilar={{ href: '/budaya/pilar6', label: 'Pilar 6: Etos & Perilaku Sosial' }}
     />
   );
 }

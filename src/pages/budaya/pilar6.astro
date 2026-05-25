@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNavbar from '../../components/SiteNavbar';
+import SiteFooter from '../../components/SiteFooter';
+import Pilar6Content from '../../components/budaya/Pilar6Content';
+---
+
+<BaseLayout
+	title="Pilar 6: Etos & Perilaku Sosial - jogjakarsa.id"
+	description="Filosofi Hamemayu Hayuning Bawono, gotong royong, empati Tepo Seliro, dan etos ksatria Mataram yang membentuk karakter manusia Yogyakarta."
+>
+	<SiteNavbar client:load />
+
+	<main class="relative isolate">
+		<Pilar6Content client:load />
+		<SiteFooter client:load />
+	</main>
+</BaseLayout>
