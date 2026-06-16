@@ -78,6 +78,7 @@ const pilarLinks: Record<string, string> = {
   pilar4: '/budaya/pilar4',
   pilar5: '/budaya/pilar5',
   pilar6: '/budaya/pilar6',
+  pilar7: '/budaya/pilar7',
 };
 
 function PillarCard({ pillar, gridClass }: { pillar: any; gridClass: string }) {
