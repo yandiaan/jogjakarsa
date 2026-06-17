@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNavbar from '../../components/SiteNavbar';
+import SiteFooter from '../../components/SiteFooter';
+import Pilar7Content from '../../components/budaya/Pilar7Content';
+---
+
+<BaseLayout
+	title="Pilar 7: Seni Kontemporer & Kreatif - jogjakarsa.id"
+	description="Ekosistem kreatif independen, dari seni jalanan mural, film indie, hingga intervensi cahaya digital pada arsitektur sejarah yang menghidupkan tradisi Yogyakarta di era modern."
+>
+	<SiteNavbar client:load />
+
+	<main class="relative isolate">
+		<Pilar7Content client:load />
+		<SiteFooter client:load />
+	</main>
+</BaseLayout>
