@@ -1,26 +1,32 @@
 ---
-import HeroSection from '../components/HeroSection';
-import PhilosophySection from '../components/PhilosophySection';
-import PillarsSection from '../components/PillarsSection';
-import SiteFooter from '../components/SiteFooter';
-import SiteNavbar from '../components/SiteNavbar';
-import SmoothScroll from '../components/SmoothScroll';
-import TerritoryBento from '../components/TerritoryBento';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import TravelFooter from '../components/travel/TravelFooter';
+import TravelHeader from '../components/travel/TravelHeader';
+import TravelHero from '../components/travel/TravelHero';
+import TripPlanner from '../components/travel/TripPlanner';
+import TravelLayout from '../layouts/TravelLayout.astro';
 ---
 
-<BaseLayout
-	title="jogjakarsa.id"
-	description="Landing page digital heritage Jogja dengan nuansa pameran seni digital yang interaktif dan elegan."
+<TravelLayout
+	title="Jogjakarsa — Perjalanan personal di Jogja"
+	description="Rancang perjalanan personal untuk menjelajahi budaya, kuliner, dan tempat bermakna di Daerah Istimewa Yogyakarta."
 >
-	<SmoothScroll client:load />
-	<SiteNavbar client:load />
-
-	<main class="relative isolate">
-		<HeroSection client:load />
-		<PhilosophySection client:idle />
-		<TerritoryBento client:idle />
-		<PillarsSection client:idle />
-		<SiteFooter client:idle />
+	<TravelHeader />
+	<main>
+		<TravelHero />
+		<section id="cara-kerja" class="bg-[#d9c7aa] px-6 py-14 text-ink md:px-10 lg:px-16 lg:py-20">
+			<div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+				<h2 class="font-display text-5xl leading-[0.88] sm:text-6xl">Satu rencana yang punya alasan.</h2>
+				<div class="grid gap-7 sm:grid-cols-3">
+					<div><p class="text-sm font-bold text-clay">01</p><h3 class="mt-3 font-display text-2xl">Ceritakan kebutuhanmu</h3><p class="mt-2 text-sm leading-relaxed text-ink/68">Siapa yang ikut, berapa hari, minat, dan batas perjalananmu.</p></div>
+					<div><p class="text-sm font-bold text-clay">02</p><h3 class="mt-3 font-display text-2xl">Lihat draf rute</h3><p class="mt-2 text-sm leading-relaxed text-ink/68">Kami susun titik perjalanan dari katalog pengalaman lokal.</p></div>
+					<div><p class="text-sm font-bold text-clay">03</p><h3 class="mt-3 font-display text-2xl">Terima penawaran</h3><p class="mt-2 text-sm leading-relaxed text-ink/68">Tim memeriksa detail sebelum harga dan ketersediaan dikonfirmasi.</p></div>
+				</div>
+			</div>
+		</section>
+		<TripPlanner client:load />
+		<section class="bg-[#a94f37] px-6 py-16 text-mist md:px-10 lg:px-16 lg:py-20">
+			<div class="mx-auto max-w-7xl lg:flex lg:items-end lg:justify-between lg:gap-10"><div><p class="text-sm font-bold text-mist/75">Dibuat untuk perjalanan yang tidak terburu-buru</p><h2 class="mt-3 max-w-3xl font-display text-5xl leading-[0.88] sm:text-6xl">Budaya bukan daftar tempat. Ia hadir saat kamu punya waktu untuk tinggal.</h2></div><a href="#rencana" class="mt-8 inline-block border border-mist/50 px-5 py-3 text-sm font-bold transition-colors hover:bg-mist hover:text-clay lg:mt-0">Coba contoh rute</a></div>
+		</section>
 	</main>
-</BaseLayout>
+	<TravelFooter />
+</TravelLayout>
