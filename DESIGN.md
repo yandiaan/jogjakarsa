@@ -4,6 +4,10 @@ Purpose: help travellers understand, try and trust a personalised Jogja travel p
 
 Identity: Jogjakarsa. Positioning: Perjalanan personal, berakar di Jogja. Tone: attentive, concrete and calm. Never invent reviews, partner logos, customer counts or AI capability claims.
 
+Logo: the recognizable Tugu Pal Putih monument, with its pointed finial, tapered shaft, ornamental collars, inset plaque and stepped pedestal, framed by an open arch. Warm ivory recalls the white monument; muted brass defines architectural detail. The serif wordmark has no trailing punctuation. Header SVG preserves detail; a separate simplified favicon removes fine ornament at 16–32px. Landmark proportions were checked against a Tugu photograph and the DIY Tourism description: https://visitingjogja.jogjaprov.go.id/8351/tugu-jogja-simbol-kota-yogyakarta/. The generated concept board is visual direction; production artwork is clean SVG.
+
+Logo exports: dark/light SVG lockups and transparent PNGs in `public/brand/`; standalone mark; 16–256px ICO; 180px Apple touch icon. The standalone wordmark contains Cormorant Garamond Regular glyph outlines with tightened spacing, so external viewers do not need the font installed. Font source: Google Fonts, https://github.com/google/fonts/tree/main/ofl/cormorantgaramond (SIL Open Font License).
+
 Direction: cinematic editorial travel with product clarity. Charcoal surfaces, warm ivory type, muted brass accent. Cormorant Garamond for expressive headings and Manrope for readable product copy. Existing drone footage and Prambanan photo anchor the place identity. Motion illustrates turning a travel idea into a tangible route.
 
 References examined: https://nalarx.com/ (product demonstration, clear workflow, restrained serif hero); https://21st.dev/community/components/s/animated-hero (animated hero patterns); https://21st.dev/community/components/s/card (media interaction patterns). These are direction references; implementation uses the existing Astro, React and GSAP stack.

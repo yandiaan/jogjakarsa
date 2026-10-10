@@ -1,0 +1,16 @@
+---
+const { language = 'id' } = Astro.props;
+const imageUrl = new URL('/brand/jogjakarsa-social.png', 'https://www.jogjakarsa.id').href;
+---
+<meta name="theme-color" content="#111311" />
+<link rel="icon" sizes="any" href="/favicon.ico?v=3" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta property="og:site_name" content="Jogjakarsa" />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={language === 'en' ? 'Jogjakarsa — custom journeys in Yogyakarta' : 'Jogjakarsa — perjalanan custom di Jogja'} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={imageUrl} />

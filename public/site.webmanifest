@@ -1,0 +1,14 @@
+{
+  "name": "Jogjakarsa — Custom Journeys in Yogyakarta",
+  "short_name": "Jogjakarsa",
+  "description": "Plan a personalized journey in Yogyakarta, Indonesia.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#111311",
+  "theme_color": "#111311",
+  "icons": [
+    { "src": "/brand/jogjakarsa-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/jogjakarsa-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
