@@ -1,5 +1,5 @@
 import { CustomEase } from 'gsap/CustomEase';
-import { Sparkles } from 'lucide-react';
+import BrandMark from './travel/BrandMark';
 import { useEffect, useRef, useState } from 'react';
 
 import { navItems } from '../data/landing';
@@ -178,9 +178,7 @@ export default function SiteNavbar() {
 				<div className="relative mx-auto flex max-w-7xl items-center justify-between">
 					{/* Logo */}
 					<a href="#top" className="pointer-events-auto group flex items-center gap-3">
-						<div className="heritage-mark flex h-10 w-10 items-center justify-center rounded-full text-sun transition-all duration-500 group-hover:shadow-[0_0_28px_rgba(244,193,122,0.32)]">
-							<Sparkles className="h-4 w-4" strokeWidth={1.8} />
-						</div>
+						<BrandMark className="h-10 w-9 object-contain" width={36} height={40} />
 						<div>
 							<p className="font-display text-xl leading-none text-mist">jogjakarsa.id</p>
 							<p className="mt-1 text-[0.62rem] uppercase tracking-[0.3em] text-mist/40">Digital Heritage</p>
@@ -349,9 +347,7 @@ export default function SiteNavbar() {
 						{/* Logo inside panel */}
 						<div>
 							<a href="#top" onClick={() => setIsMenuOpen(false)} className="group mb-14 inline-flex items-center gap-3" data-menu-fade>
-								<div className="heritage-mark flex h-9 w-9 items-center justify-center rounded-full text-sun">
-									<Sparkles className="h-3.5 w-3.5" strokeWidth={1.8} />
-								</div>
+								<BrandMark className="h-10 w-9 object-contain" width={36} height={40} />
 								<div>
 									<p className="font-display text-lg leading-none text-mist/80 transition-colors duration-300 group-hover:text-mist">jogjakarsa.id</p>
 									<p className="mt-0.5 text-[0.58rem] uppercase tracking-[0.3em] text-mist/32">Digital Heritage</p>

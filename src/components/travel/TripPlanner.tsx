@@ -6,6 +6,7 @@ import { exchangeRate, formatMoney, internationalServices } from '../../lib/trav
 import { useTravelReady } from '../../lib/travel/useTravelReady';
 import { useCurrency } from '../../lib/travel/useCurrency';
 import type { Language } from '../../lib/travel/locale';
+import BrandMark from './BrandMark';
 
 const styles = ['solo', 'couple', 'friends', 'family'];
 const interests = ['budaya', 'kuliner', 'alam'];
@@ -115,7 +116,7 @@ export default function TripPlanner({ language = 'id' }: { language?: Language }
      {hasSaved && <button type="button" className="jk-text-link restore-button" onClick={restore}><RotateCcw size={14} aria-hidden="true" />{t('Muat draf tersimpan', 'Restore saved draft')}</button>}
     </div>
     <div className="planner-result">
-     <div className="planner-panel-heading"><span>{t('Draf itinerary', 'Draft itinerary')}</span><label className="planner-currency"><span className="sr-only">{t('Mata uang estimasi', 'Estimate currency')}</span><select value={currency} onChange={event => chooseCurrency(event.target.value as 'IDR' | 'USD')}><option value="IDR">IDR</option><option value="USD">USD</option></select></label></div>
+     <div className="planner-panel-heading"><span className="planner-brand-label"><BrandMark className="planner-brand-mark" width={22} height={27} />{t('Draf itinerary', 'Draft itinerary')}</span><label className="planner-currency"><span className="sr-only">{t('Mata uang estimasi', 'Estimate currency')}</span><select value={currency} onChange={event => chooseCurrency(event.target.value as 'IDR' | 'USD')}><option value="IDR">IDR</option><option value="USD">USD</option></select></label></div>
      <div className="itinerary-title"><h3>{duration} {t('hari, sesuai ritmemu.', duration === 1 ? 'day, at your pace.' : 'days, at your pace.')}</h3><p>{styleLabel(style)} · {travellers} {t('peserta', 'travellers')} · Yogyakarta</p></div>
      <ol className="itinerary-days">{trip.days.map((day: { id: string; name: string; area: string; duration: string; description: string }, index: number) => <li key={day.id}><span className="day-number">0{index + 1}</span><div><h4>{serviceName(day.id, day.name)}</h4><p>{en ? catalogueEn[day.id].description : day.description}</p><div className="itinerary-meta"><span><MapPin size={12} aria-hidden="true" />{en && day.area === 'Kota Yogyakarta' ? 'Yogyakarta City' : day.area}</span><span><Clock size={12} aria-hidden="true" />{en ? catalogueEn[day.id].duration : day.duration}</span></div></div></li>)}</ol>
      <details className="quote-breakdown"><summary>{t('Lihat rincian estimasi', 'View itemised estimate')}<Plus size={14} aria-hidden="true" /></summary><div>{quote.items.map((item: { id: string; name: string; quantity: number; subtotal: number }) => <p key={item.id}><span>{serviceName(item.id, item.name)}{item.quantity > 1 ? ' × ' + item.quantity : ''}</span><span>{money(item.subtotal)}</span></p>)}<p><span>{t('Biaya pengurusan', 'Coordination fee')}</span><span>{money(quote.serviceFee)}</span></p></div></details>

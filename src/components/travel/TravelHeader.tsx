@@ -1,4 +1,5 @@
 import LocaleControls from './LocaleControls';
+import BrandMark from './BrandMark';
 import { copy, localHref, type Language } from '../../lib/travel/locale';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -14,7 +15,7 @@ export default function TravelHeader({ language = 'id', pathname = '/' }: { lang
  return (
   <header className="jk-header">
    <div className="jk-shell jk-nav">
-    <a href={localHref(language, "/#top")} className="jk-brand" aria-label={t("Jogjakarsa beranda")}><span className="jk-brand-mark" aria-hidden="true">j.</span>jogjakarsa<span className="brand-period">.</span></a>
+    <a href={localHref(language, "/#top")} className="jk-brand" aria-label={t("Jogjakarsa beranda")}><BrandMark />jogjakarsa</a>
     <nav className="jk-desktop-nav" aria-label={t("Navigasi utama")}><a href={localHref(language, "/#layanan")}>{t("Layanan")}</a><a href={localHref(language, "/#pengalaman")}>{t("Pilihan trip")}</a><a href={localHref(language, "/#cara-kerja")}>{t("Cara kerja")}</a><a href={localHref(language, "/budaya")}>{t("Panduan budaya")}</a></nav>
     <LocaleControls language={language} pathname={pathname} />
     <a className="jk-nav-cta" href={localHref(language, "/#rencana")}>{t("Coba planner")}<ArrowUpRight size={15} aria-hidden="true" /></a>

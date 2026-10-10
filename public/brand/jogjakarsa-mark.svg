@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 144" fill="none">
+  <title>Jogjakarsa — Tugu Jogja</title>
+  <path d="M16 134V58a44 44 0 0 1 88 0v76" stroke="#d8bd88" stroke-width="3" />
+  <path d="m60 25 3 20h-6l3-20Z" fill="#d8bd88" />
+  <path d="M55 45q5-5 10 0l3 4H52l3-4Z" fill="#eeeae1" stroke="#d8bd88" stroke-width="2" stroke-linejoin="round" />
+  <path d="M51 49h18v5H51z" fill="#d8bd88" />
+  <path d="M56 56h8l5 37H51l5-37Z" fill="#eeeae1" stroke="#d8bd88" stroke-width="2" stroke-linejoin="round" />
+  <path d="M60 60v29" stroke="#d8bd88" stroke-width="1.5" />
+  <path d="m60 73 3 3-3 3-3-3 3-3Z" fill="#d8bd88" />
+  <path d="M47 96v-6q5 0 8 5 5-9 10 0 3-5 8-5v9H47v-3Z" fill="#eeeae1" stroke="#d8bd88" stroke-width="2" stroke-linejoin="round" />
+  <path d="M46 99h28v4H46z" fill="#d8bd88" />
+  <path d="M50 103h20v21H50z" fill="#eeeae1" stroke="#d8bd88" stroke-width="2" />
+  <path d="M56 108h8v11h-8z" stroke="#d8bd88" stroke-width="2" />
+  <path d="M47 124h26v4H47zm-4 4h34v4H43zm-4 4h42v4H39z" fill="#eeeae1" stroke="#d8bd88" stroke-width="1.5" stroke-linejoin="round" />
+</svg>

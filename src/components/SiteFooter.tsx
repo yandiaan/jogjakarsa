@@ -7,7 +7,7 @@ export default function SiteFooter() {
 		<footer className="section-shell border-t border-white/10 bg-[#04070d] px-6 py-16 md:px-10 lg:px-16 lg:py-20">
 			<div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
 				<div className="space-y-5">
-					<p className="font-display text-3xl text-mist sm:text-4xl">jogjakarsa.id</p>
+					<a href="/" aria-label="Jogjakarsa beranda"><img src="/brand/jogjakarsa-logo.svg?v=3" alt="" width="430" height="156" className="w-64 max-w-full" loading="lazy" /></a>
 					<p className="max-w-md text-sm leading-relaxed text-mist/64 md:text-base">
 						Sebuah kerangka digital heritage yang memperlakukan beranda seperti ruang pamer: tenang, gelap, dan penuh lapisan makna.
 					</p>
