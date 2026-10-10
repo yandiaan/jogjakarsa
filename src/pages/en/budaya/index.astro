@@ -1,0 +1,16 @@
+---
+import TravelLayout from '../../../layouts/TravelLayout.astro';
+import TravelHeader from '../../../components/travel/TravelHeader';
+import TravelFooter from '../../../components/travel/TravelFooter';
+import SmoothScroll from '../../../components/SmoothScroll';
+import TravelMotion from '../../../components/travel/TravelMotion';
+import { visitorGuides } from '../../../data/culture-en';
+---
+<TravelLayout language="en" title="Yogyakarta culture guides | Jogjakarsa" description="English visitor guides to Yogyakarta’s architecture, crafts, performing arts, and everyday life. Choose interests for a tailor-made trip.">
+ <a href="#main-content" class="jk-skip-link">Skip to main content</a>
+ <SmoothScroll client:load /><TravelHeader language="en" pathname={Astro.url.pathname} client:load />
+ <main id="main-content" class="jk-culture">
+  <section class="culture-detail-hero relative min-h-[85vh] flex items-center overflow-hidden pt-32 pb-20"><div class="absolute inset-0"><img src="/prambanan-sunrise.webp" alt="Prambanan temple in Yogyakarta at sunrise" class="w-full h-full object-cover" /><div class="culture-detail-shade absolute inset-0"></div></div><div class="jk-shell relative z-10"><p class="jk-kicker">Visitor guides / Yogyakarta culture</p><h1 class="text-5xl md:text-7xl lg:text-8xl leading-[1.05] mt-6">Know the culture.<br /><em>Shape your journey.</em></h1><p class="culture-context">Read our English visitor overviews, then choose the experiences you want to understand. These guides inspire a trip; they are not a list of confirmed bookable activities.</p><div class="flex flex-wrap gap-6 items-center mt-8"><a href="#guides" class="jk-button">Read the visitor guides</a><a href="/en/#rencana" class="jk-text-link">Try the trip planner</a></div></div></section>
+  <section class="jk-section" id="guides"><div class="jk-shell"><div class="jk-section-heading" data-reveal><p class="jk-kicker">Seven culture themes</p><h2>Start with what<br /><em>you want to understand.</em></h2></div><div class="culture-guide-list">{visitorGuides.map((guide, index) => <a href={'/en/budaya/' + guide.slug} class="culture-guide-row" data-reveal><span>0{index + 1}</span><div><h3>{guide.title}</h3><p>{guide.summary}</p></div><span aria-hidden="true">↗</span></a>)}</div></div></section>
+ </main><TravelFooter language="en" /><TravelMotion client:load />
+</TravelLayout>

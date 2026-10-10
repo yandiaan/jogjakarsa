@@ -1,26 +1,4 @@
 ---
-import SmoothScroll from '../components/SmoothScroll';
-import TravelHeader from '../components/travel/TravelHeader';
-import TravelHero from '../components/travel/TravelHero';
-import TravelExperience from '../components/travel/TravelExperience';
-import TravelWorkflow from '../components/travel/TravelWorkflow';
-import TravelAbout from '../components/travel/TravelAbout.astro';
-import TravelFooter from '../components/travel/TravelFooter';
-import TravelMotion from '../components/travel/TravelMotion';
-import TripPlanner from '../components/travel/TripPlanner';
-import TravelLayout from '../layouts/TravelLayout.astro';
+import HomePage from '../components/travel/HomePage.astro';
 ---
-<TravelLayout title="Jogjakarsa — Perjalanan personal, berakar di Jogja" description="Rancang perjalanan personal di Yogyakarta. Jelajahi budaya, kuliner, dan alam lewat rute yang bisa kamu sesuaikan, dengan estimasi biaya terbuka.">
- <a href="#main-content" class="jk-skip-link">Lewati ke konten utama</a>
- <SmoothScroll client:load />
- <TravelHeader client:load />
- <main id="main-content">
-  <TravelHero client:load />
-  <TravelExperience client:load />
-  <TravelWorkflow client:load />
-  <TripPlanner client:load />
-  <TravelAbout />
- </main>
- <TravelFooter />
- <TravelMotion client:load />
-</TravelLayout>
+<HomePage />

@@ -4,18 +4,21 @@ import '../styles/travel.css';
 
 interface Props {
 	title: string;
+ language?: "id" | "en";
 	description: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, language = "id" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="id" class="bg-night text-mist">
+<html lang={language} class="bg-night text-mist">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+        <link rel="alternate" hreflang="id" href={Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/"} />
+        <link rel="alternate" hreflang="en" href={"/en" + ((Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/") === "/" ? "/" : Astro.url.pathname.replace(/^\/en(?=\/|$)/, ""))} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />

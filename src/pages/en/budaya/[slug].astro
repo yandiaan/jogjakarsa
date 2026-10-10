@@ -1,0 +1,19 @@
+---
+import TravelLayout from '../../../layouts/TravelLayout.astro';
+import TravelHeader from '../../../components/travel/TravelHeader';
+import TravelFooter from '../../../components/travel/TravelFooter';
+import SmoothScroll from '../../../components/SmoothScroll';
+import TravelMotion from '../../../components/travel/TravelMotion';
+import { visitorGuides } from '../../../data/culture-en';
+export function getStaticPaths() { return visitorGuides.map(guide => ({ params: { slug: guide.slug }, props: { guide } })); }
+const { guide } = Astro.props;
+---
+<TravelLayout language="en" title={guide.title + ' | Jogjakarsa culture guide'} description={guide.summary}>
+ <a href="#main-content" class="jk-skip-link">Skip to main content</a>
+ <SmoothScroll client:load /><TravelHeader language="en" pathname={Astro.url.pathname} client:load />
+ <main id="main-content" class="jk-culture">
+  <section class="culture-detail-hero relative min-h-[70vh] flex items-end overflow-hidden"><div class="absolute inset-0"><img src="/prambanan-sunrise.webp" alt="Prambanan temple in Yogyakarta at sunrise" class="w-full h-full object-cover" /><div class="culture-detail-shade absolute inset-0"></div></div><div class="jk-shell relative z-10 pb-16 pt-32"><a href="/en/budaya" class="jk-text-link">Back to the culture guides</a><p class="jk-kicker mt-8">English visitor overview</p><h1 class="text-5xl md:text-7xl leading-[1.05] mt-6">{guide.title}</h1><p class="culture-context">{guide.summary}</p><a class="jk-button culture-hero-cta" href="/en/#rencana">Plan a culture trip</a></div></section>
+  <section class="jk-section"><div class="jk-shell culture-reading-grid"><div><p class="jk-kicker">Before you visit</p><p class="culture-context">This overview helps you choose interests for a Yogyakarta trip. Activities, prices, and English-speaking support must be confirmed before booking.</p><a href={'/budaya/' + guide.slug} hreflang="id" class="jk-text-link mt-6">Read the full Indonesian archive</a></div><div class="culture-reading-notes">{guide.notes.map(([title, description]) => <article data-reveal><h2>{title}</h2><p>{description}</p></article>)}</div></div></section>
+  <section class="jk-section culture-product-bridge"><div class="jk-shell"><p class="jk-kicker">From a guide to a trip</p><h2>Make room for culture.<br /><em>Start with a draft.</em></h2><p>Jogjakarsa is building tailor-made Yogyakarta trips with local experiences, a private car, and optional English-speaking support. Try the planner for an itinerary and itemised costs. Booking has not launched.</p><a href="/en/#rencana" class="jk-button">Try the trip planner</a></div></section>
+ </main><TravelFooter language="en" /><TravelMotion client:load />
+</TravelLayout>

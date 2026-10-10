@@ -1,0 +1,8 @@
+---
+const { language = 'id' } = Astro.props;
+const en = language === 'en';
+---
+<section class="jk-section ai-status-section" id="teknologi"><div class="jk-shell about-grid">
+ <div class="about-title" data-reveal><p class="jk-kicker">{en ? 'How the technology helps' : 'Peran teknologi'}</p><h2>{en ? 'A clearer plan.' : 'Rencana lebih jelas.'}<br /><em>{en ? 'With a person in the loop.' : 'Tetap diperiksa manusia.'}</em></h2></div>
+ <div class="about-copy" data-reveal><p>{en ? 'The working demo uses a curated catalogue and planning rules. Generative AI is not connected yet.' : 'Demo yang berjalan memakai katalog dan aturan perencanaan. AI generatif belum terhubung.'}</p><p>{en ? 'We plan to let you describe your trip in everyday language, then use AI to collect preferences, suggest catalogue-based routes, and revise a draft. Prices, English-speaking services, and bookings will still require human and supplier confirmation.' : 'Arah berikutnya: kamu menceritakan trip dengan bahasa sehari-hari, lalu AI membantu merangkum kebutuhan, memilih rute dari katalog, dan merevisi draf. Harga, layanan berbahasa Inggris, serta booking tetap memerlukan konfirmasi tim dan mitra.'}</p></div>
+</div></section>

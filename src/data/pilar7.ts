@@ -3,7 +3,7 @@ import type { SubSection } from './pilar1';
 export const pilar7Data = {
   title: "Pilar 7: Seni Kontemporer & Kreatif (Evolusi)",
   subtitle: "Evolusi",
-  description: "Ekosistem kreatif independen, dari seni jalanan mural, film indie, hingga intervensi cahaya digital pada arsitektur sejarah. Evolusi dari tradisi menjaga nyala budaya agar terus relevan dengan dinamika peradaban urban modern.",
+  description: "Kenali mural, film, dan seni kontemporer yang menjadi bagian dari kehidupan kreatif Jogja.",
   heroImage: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&q=80&w=2000",
   sections: [
     {

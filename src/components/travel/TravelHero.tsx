@@ -1,8 +1,10 @@
+import { copy, type Language } from '../../lib/travel/locale';
 import { ArrowDown, ArrowUpRight, Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { ensureGsapPlugins, gsap, prefersReducedMotion } from '../../lib/gsap';
 
-export default function TravelHero() {
+export default function TravelHero({ language = 'id' }: { language?: Language }) {
+ const t = (text: string) => copy(language, text);
  const scope = useRef<HTMLElement>(null);
  const video = useRef<HTMLVideoElement>(null);
  const [playing, setPlaying] = useState(false);
@@ -29,30 +31,30 @@ export default function TravelHero() {
  return (
   <section id="top" className="jk-hero" ref={scope}>
    <div className="jk-shell jk-hero-intro">
-    <p className="jk-kicker hero-enter">Perjalanan personal, berakar di Jogja</p>
-    <h1 className="hero-enter">Jogja punya cerita.<br /><em>Temukan bagianmu.</em></h1>
-    <p className="jk-hero-description hero-enter">Budaya, rasa, dan tempat yang ingin kamu kenal. Kami bantu menyusun semuanya menjadi perjalanan yang terasa milikmu.</p>
+    <p className="jk-kicker hero-enter">{t("Travel agency lokal / Daerah Istimewa Yogyakarta")}</p>
+    <h1 className="hero-enter">{t("Perjalanan custom.")}<br /><em>{t("Khusus di Jogja.")}</em></h1>
+    <p className="jk-hero-description hero-enter">{t("Kami sedang membangun layanan itinerary, aktivitas lokal, serta mobil dan pengemudi dalam satu rencana. Untuk pasangan, keluarga, dan kelompok teman yang ingin trip sesuai kebutuhan.")}</p>
     <div className="jk-actions hero-enter">
-     <a className="jk-button" href="#rencana">Rancang perjalanan <ArrowUpRight size={17} aria-hidden="true" /></a>
-     <a className="jk-text-link" href="#cara-kerja">Lihat cara kerjanya <ArrowDown size={15} aria-hidden="true" /></a>
+     <a className="jk-button" href="#rencana">{t("Coba planner perjalanan")}<ArrowUpRight size={17} aria-hidden="true" /></a>
+     <a className="jk-text-link" href="#cara-kerja">{t("Lihat cara kerjanya")}<ArrowDown size={15} aria-hidden="true" /></a>
     </div>
    </div>
    <div className="jk-shell">
     <div className="hero-film">
-     <video ref={video} muted loop playsInline preload="metadata" poster="/prambanan-sunrise.webp" onPause={() => setPlaying(false)} onPlay={() => setPlaying(true)} aria-label="Pemandangan Jogja dari udara">
+     <video ref={video} muted loop playsInline preload="metadata" poster="/prambanan-sunrise.webp" onPause={() => setPlaying(false)} onPlay={() => setPlaying(true)} aria-label={t("Pemandangan Jogja dari udara")}>
       <source src="/video/drone-footage.webm" type="video/webm" />
      </video>
      <div className="hero-film-shade" />
-     <div className="hero-film-caption"><span>Lebih dekat dengan Jogja.</span><p>Pelan-pelan. Dengan rasa ingin tahu.</p></div>
-     <div className="hero-route-card" aria-label="Contoh perjalanan">
-      <div className="route-card-top"><span>Perjalananmu berikutnya</span><ArrowUpRight size={17} aria-hidden="true" /></div>
-      <h2>Sehari, banyak cerita.</h2>
-      <div className="hero-route-stops"><span>Taman Sari</span><i /><span>Kotagede</span><i /><span>Kuliner malam</span></div>
-      <p>Contoh rute · Budaya & kuliner</p>
+     <div className="hero-film-caption"><span>{t("Lebih dekat dengan Jogja.")}</span><p>{t("Pelan-pelan. Dengan rasa ingin tahu.")}</p></div>
+     <div className="hero-route-card" aria-label={language === 'en' ? 'Sample itinerary' : 'Contoh perjalanan'}>
+      <div className="route-card-top"><span>{t("Perjalananmu berikutnya")}</span><ArrowUpRight size={17} aria-hidden="true" /></div>
+      <h2>{t("Sehari, banyak cerita.")}</h2>
+      <div className="hero-route-stops"><span>{t("Taman Sari")}</span><i /><span>{t("Kotagede")}</span><i /><span>{t("Kuliner malam")}</span></div>
+      <p>{t("Contoh rute · Budaya & kuliner")}</p>
      </div>
-     <button type="button" className="film-control" onClick={toggleVideo} aria-label={playing ? 'Jeda video Jogja' : 'Putar video Jogja'}>{playing ? <Pause size={16} /> : <Play size={16} />}</button>
+     <button type="button" className="film-control" onClick={toggleVideo} aria-label={t(playing ? 'Jeda video Jogja' : 'Putar video Jogja')}>{playing ? <Pause size={16} /> : <Play size={16} />}</button>
     </div>
-    <div className="hero-scope"><span>Fokus di Daerah Istimewa Yogyakarta</span><span>Rute personal <b>·</b> Estimasi terbuka <b>·</b> Ditinjau manusia</span></div>
+    <div className="hero-scope"><span>{t("Fokus di Daerah Istimewa Yogyakarta")}</span><span>{t("Demo planner 1–3 hari")}<b>·</b>{t("Booking belum aktif")}</span></div>
    </div>
   </section>
  );

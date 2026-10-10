@@ -1,0 +1,34 @@
+---
+import SmoothScroll from '../SmoothScroll';
+import TravelHeader from './TravelHeader';
+import TravelHero from './TravelHero';
+import TravelExperience from './TravelExperience';
+import TravelWorkflow from './TravelWorkflow';
+import TravelServices from './TravelServices.astro';
+import TravelAbout from './TravelAbout.astro';
+import TravelFooter from './TravelFooter';
+import TravelMotion from './TravelMotion';
+import TripPlanner from './TripPlanner';
+import InternationalSupport from './InternationalSupport.astro';
+import AIStatus from './AIStatus.astro';
+import TravelLayout from '../../layouts/TravelLayout.astro';
+const { language = 'id' } = Astro.props as { language?: 'id' | 'en' };
+const en = language === 'en';
+---
+<TravelLayout language={language} title={en ? "Jogjakarsa | Tailor-made trips in Yogyakarta, Indonesia" : "Jogjakarsa | Travel agency untuk perjalanan custom di Jogja"} description={en ? "Plan a custom Yogyakarta trip with local experiences, a private car, English-speaking support, and itemised estimates in IDR or USD. Try our planning demo." : "Jasa perjalanan custom di Jogja: itinerary, aktivitas lokal, mobil dan pengemudi. Coba planner dengan pilihan bahasa, dukungan wisatawan internasional, dan estimasi IDR/USD."}>
+ <a href="#main-content" class="jk-skip-link">{en ? "Skip to main content" : "Lewati ke konten utama"}</a>
+ <SmoothScroll client:load />
+ <TravelHeader language={language} pathname={Astro.url.pathname} client:load />
+ <main id="main-content">
+  <TravelHero language={language} client:load />
+  <TravelServices language={language} />
+  <InternationalSupport language={language} />
+  <TravelExperience language={language} client:load />
+  <TravelWorkflow language={language} client:load />
+  <TripPlanner language={language} client:load />
+  <AIStatus language={language} />
+  <TravelAbout language={language} />
+ </main>
+ <TravelFooter language={language} />
+ <TravelMotion client:load />
+</TravelLayout>

@@ -1,5 +1,9 @@
 ---
+import { copy, localHref, type Language } from '../../lib/travel/locale';
+const { language = 'id' } = Astro.props as { language?: Language };
+const t = (text: string) => copy(language, text);
 const questions = [
+ ['Apa yang dijual Jogjakarsa?', 'Layanan yang kami bangun adalah perjalanan custom di Jogja: penyusunan itinerary, pilihan aktivitas lokal, dan koordinasi mobil dengan pengemudi. Planner adalah cara mencoba rencana awal sebelum layanan pemesanan tersedia.'],
  ['Apakah Jogjakarsa sudah menerima booking?', 'Saat ini kamu bisa mencoba planner dan menyimpan draf perjalanan. Pemesanan, pembayaran, serta konfirmasi mitra belum aktif. Harga pada planner merupakan estimasi demonstrasi.'],
  ['Di mana saja cakupan perjalanannya?', 'Fokus kami Daerah Istimewa Yogyakarta: Kota Yogyakarta, Sleman, Bantul, Kulon Progo, dan Gunungkidul. Katalog awal berisi sebagian pengalaman; tidak semua wilayah sudah memiliki pilihan aktivitas.'],
  ['Apa yang termasuk dalam estimasi?', 'Planner menampilkan aktivitas yang dipilih, mobil dan pengemudi sesuai jumlah hari, serta biaya pengurusan. Penginapan, tiket transportasi menuju Jogja, makan di luar aktivitas, dan biaya tambahan belum termasuk.'],
@@ -9,10 +13,10 @@ const questions = [
 ---
 <section id="tentang" class="jk-section about-section">
  <div class="jk-shell about-grid">
-  <div class="about-title" data-reveal><p class="jk-kicker">Teknologi membantu. Manusia memahami.</p><h2>Lebih dari rute.<br /><em>Ada perhatian.</em></h2></div>
-  <div class="about-copy" data-reveal><p>Jogjakarsa tumbuh dari keinginan mengenalkan budaya Jogja lewat pengalaman yang dekat dengan kehidupan lokal.</p><p>Kami sedang membangun layanan yang mempertemukan perencanaan digital dengan perhatian tim lokal. Supaya perjalananmu punya ruang untuk hal-hal yang penting bagimu.</p><a href="/budaya" class="jk-text-link">Kenali budaya Jogja <span aria-hidden="true">↗</span></a></div>
+  <div class="about-title" data-reveal><p class="jk-kicker">{t("Tentang layanan Jogjakarsa")}</p><h2>{t("Travel agency lokal.")}<br /><em>{t("Perjalanan sesuai kamu.")}</em></h2></div>
+  <div class="about-copy" data-reveal><p>{t("Kami sedang membangun jasa perencanaan dan pengurusan perjalanan custom di Daerah Istimewa Yogyakarta, untuk pasangan, keluarga, dan kelompok teman.")}</p><p>{t("Yang kamu bayar pada layanan yang direncanakan adalah aktivitas, transportasi, dan biaya pengurusan yang dirinci terpisah. Tim akan meninjau kebutuhan serta mengonfirmasi mitra sebelum penawaran final. Teknologi membantu menyiapkan draf; booking dan layanan tim belum aktif pada demo ini.")}</p><a href={localHref(language, "/budaya")} class="jk-text-link">{t("Kenali budaya Jogja")}<span aria-hidden="true">↗</span></a></div>
  </div>
 </section>
 <section id="faq" class="jk-section faq-section">
- <div class="jk-shell faq-grid"><div data-reveal><p class="jk-kicker">Sebelum kamu berangkat</p><h2>Yang mungkin<br /><em>ingin kamu tahu.</em></h2></div><div class="faq-list" data-reveal>{questions.map(([question, answer]) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
+ <div class="jk-shell faq-grid"><div data-reveal><p class="jk-kicker">{t("Sebelum kamu berangkat")}</p><h2>{t("Yang mungkin")}<br /><em>{t("ingin kamu tahu.")}</em></h2></div><div class="faq-list" data-reveal>{questions.map(([question, answer]) => <details><summary>{t(question)}<span aria-hidden="true">+</span></summary><p>{t(answer)}</p></details>)}</div></div>
 </section>

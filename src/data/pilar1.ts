@@ -16,7 +16,7 @@ export interface SubSection {
 export const pilar1Data = {
   title: "Pilar 1: Arsitektur & Tata Ruang",
   subtitle: "Tatanan",
-  description: "Manifesto spasial dari Sumbu Filosofis, arsitektur keraton, hingga mahakarya litikum yang merefleksikan tatanan sosial dan kosmologi Jogja.",
+  description: "Kenali Sumbu Filosofis, arsitektur keraton, dan tata ruang Jogja sebelum memilih tempat yang ingin dikunjungi.",
   sections: [
     {
       id: "sumbu-filosofis",

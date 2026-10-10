@@ -3,7 +3,7 @@ import type { SubSection } from './pilar1';
 export const pilar4Data = {
   title: "Pilar 4: Bahasa & Aksara (Sastra & Wicara)",
   subtitle: "Sastra & Wicara",
-  description: "Bahasa sebagai cermin budi pekerti, aksara yang bernyawa, dan naskah-naskah kuno yang merekam jiwa peradaban Mataram.",
+  description: "Kenali bahasa Jawa, unggah-ungguh, dan aksara sebagai bekal berinteraksi dengan masyarakat lokal.",
   heroImage: "https://images.unsplash.com/photo-1455885661740-29cbf08a42fa?auto=format&fit=crop&q=80&w=2000",
   sections: [
     {

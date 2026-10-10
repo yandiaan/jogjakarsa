@@ -1,22 +1,24 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SiteNavbar from '../components/SiteNavbar';
-import SiteFooter from '../components/SiteFooter';
+import TravelLayout from '../layouts/TravelLayout.astro';
+import TravelHeader from '../components/travel/TravelHeader';
+import TravelFooter from '../components/travel/TravelFooter';
 import SmoothScroll from '../components/SmoothScroll';
 import BudayaHeroSection from '../components/budaya/BudayaHeroSection';
 import BudayaPillarsSection from '../components/budaya/BudayaPillarsSection';
 ---
 
-<BaseLayout
-	title="Budaya - jogjakarsa.id"
+<TravelLayout
+	title="Budaya | Panduan budaya Jogjakarsa"
 	description="Eksplorasi 7 pilar kebudayaan yang mengakar di Yogyakarta."
 >
 	<SmoothScroll client:load />
-	<SiteNavbar client:load />
+	<TravelHeader pathname={Astro.url.pathname} client:load />
 
-	<main class="relative isolate">
+	<a href="#main-content" class="jk-skip-link">Lewati ke konten utama</a>
+	<main id="main-content" class="jk-culture relative isolate">
 		<BudayaHeroSection client:load />
 		<BudayaPillarsSection client:load />
-		<SiteFooter client:load />
+
 	</main>
-</BaseLayout>
+	<TravelFooter />
+</TravelLayout>

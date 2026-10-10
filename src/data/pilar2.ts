@@ -3,7 +3,7 @@ import type { SubSection } from './pilar1';
 export const pilar2Data = {
   title: "Pilar 2: Seni Pertunjukan & Bunyi",
   subtitle: "Gending & Beksa",
-  description: "Gerak tubuh klasik sebagai meditasi kinetik dan gamelan sebagai logika bunyi yang mengatur ritme semesta dan ketenangan jiwa.",
+  description: "Kenali tari klasik, gamelan, dan seni pertunjukan Jogja sebagai inspirasi pengalaman budaya selama perjalanan.",
   heroImage: "https://images.unsplash.com/photo-1610486806541-b850d9dd71d5?auto=format&fit=crop&q=80&w=2000",
   sections: [
     {
