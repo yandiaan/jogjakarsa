@@ -3,7 +3,7 @@ import type { SubSection } from './pilar1';
 export const pilar5Data = {
   title: "Pilar 5: Tradisi & Upacara (Paugeran)",
   subtitle: "Paugeran",
-  description: "Diplomasi spiritual antara manusia dan alam semesta. Ritual-ritual sakral yang menjaga keseimbangan ekosistem, memperkuat solidaritas sosial, dan merawat memori peradaban Mataram.",
+  description: "Kenali tradisi serta upacara Jogja, termasuk Labuhan dan Grebeg. Jadwal serta akses kunjungan perlu diperiksa sebelum berangkat.",
   heroImage: "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&q=80&w=2000",
   sections: [
     {

@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { gsap, ensureGsapPlugins } from '../../lib/gsap';
+import { gsap, ensureGsapPlugins, prefersReducedMotion } from '../../lib/gsap';
 import type { SubSection } from '../../data/pilar1';
 import { ArrowLeft } from 'lucide-react';
 
@@ -30,7 +30,7 @@ export default function PilarPageShell({
   const heroClass = `pilar-hero-el`;
 
   useEffect(() => {
-    if (!containerRef.current || typeof window === 'undefined') return;
+    if (!containerRef.current || typeof window === 'undefined' || prefersReducedMotion()) return;
     ensureGsapPlugins();
 
     const ctx = gsap.context(() => {
@@ -47,6 +47,7 @@ export default function PilarPageShell({
       const wrappers = gsap.utils.toArray<HTMLElement>('.sub-section-wrapper');
 
       wrappers.forEach((wrapper) => {
+        if (!window.matchMedia("(min-width: 768px)").matches) return;
         const track = wrapper.querySelector('.horizontal-track') as HTMLElement;
         if (!track) return;
 
@@ -75,9 +76,9 @@ export default function PilarPageShell({
   return (
     <div ref={containerRef} className="bg-ink text-mist min-h-screen">
       {/* ─── Hero ─── */}
-      <section className="relative min-h-[70vh] flex items-end overflow-hidden">
+      <section className="culture-detail-hero relative min-h-[70vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/70 to-ink z-10" />
+          <div className="culture-detail-shade absolute inset-0 z-10" />
           <img
             src={heroImage}
             alt={heroAlt}
@@ -88,15 +89,14 @@ export default function PilarPageShell({
         <div className="relative z-10 container mx-auto px-6 max-w-6xl pb-16 pt-32">
           <a
             href="/budaya"
-            className={`${heroClass} inline-flex items-center gap-2 text-sun/80 hover:text-sun text-sm font-medium tracking-wider mb-8 transition-colors group`}
+            className={`${heroClass} flex w-fit items-center gap-2 text-sun/80 hover:text-sun text-sm font-medium mb-8 transition-colors group`}
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            KEMBALI KE 7 PILAR
+            Kembali ke panduan budaya
           </a>
 
-          <div className={`${heroClass} inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sun/10 border border-sun/20 text-sun text-sm font-medium tracking-wider mb-6`}>
-            <span className="w-2 h-2 rounded-full bg-sun animate-pulse" />
-            PILAR {pilarNumber}
+          <div className={`${heroClass} jk-kicker mb-6`}>
+            Panduan budaya / {pilarNumber}
           </div>
 
           <h1 className={`${heroClass} font-serif text-5xl md:text-7xl font-bold text-mist mb-4 leading-[1.1]`}>
@@ -109,14 +109,17 @@ export default function PilarPageShell({
           <p className={`${heroClass} text-xl md:text-2xl text-mist/70 max-w-3xl font-sans leading-relaxed`}>
             {description}
           </p>
+          <p className="culture-context">Panduan budaya Jogjakarsa untuk mengenali pengalaman yang ingin kamu masukkan ke perjalanan custom di Jogja.</p>
+          <a href="/#rencana" className="jk-button culture-hero-cta">Coba rencana trip budaya</a>
         </div>
       </section>
 
       {/* ─── Sub-sections ─── */}
-      {sections.map((section, sIdx) => (
+      {sections.map((section) => (
         <SubSectionBlock key={section.id} section={section} />
       ))}
 
+      <section className="jk-section culture-product-bridge"><div className="jk-shell"><p className="jk-kicker">Dari panduan ke rencana perjalanan</p><h2>Ingin mengenalnya langsung?<br /><em>Susun trip budaya Jogja.</em></h2><p>Jogjakarsa sedang membangun layanan itinerary, aktivitas lokal, dan transportasi untuk perjalanan custom. Coba planner untuk melihat draf rute dan rincian biaya. Aktivitas serta ketersediaan perlu dikonfirmasi sebelum pemesanan.</p><a href="/#rencana" className="jk-button">Coba planner perjalanan</a></div></section>
       {/* ─── Bottom Navigation ─── */}
       <section className="py-20 border-t border-mist/10">
         <div className="container mx-auto px-6 max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -132,7 +135,7 @@ export default function PilarPageShell({
               href="/budaya"
               className="font-sans text-mist/60 hover:text-sun transition-colors text-sm tracking-wider"
             >
-              ← Kembali ke 7 Pilar
+              ← Kembali ke panduan budaya
             </a>
           )}
 
@@ -140,7 +143,7 @@ export default function PilarPageShell({
             href="/budaya"
             className="font-serif text-xl md:text-2xl text-mist hover:text-sun transition-colors"
           >
-            7 Pilar Kebudayaan
+            Panduan budaya Jogja
           </a>
 
           {nextPilar ? (
@@ -152,7 +155,7 @@ export default function PilarPageShell({
             </a>
           ) : (
             <span className="font-sans text-mist/30 text-sm tracking-wider">
-              Segera Hadir →
+              Panduan terakhir
             </span>
           )}
         </div>
@@ -169,7 +172,7 @@ function SubSectionBlock({ section }: { section: SubSection }) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current || typeof window === 'undefined') return;
+    if (!sectionRef.current || typeof window === 'undefined' || prefersReducedMotion()) return;
     ensureGsapPlugins();
 
     const ctx = gsap.context(() => {

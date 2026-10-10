@@ -1,18 +1,22 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import SiteNavbar from '../../components/SiteNavbar';
-import SiteFooter from '../../components/SiteFooter';
+import TravelLayout from '../../layouts/TravelLayout.astro';
+import TravelHeader from '../../components/travel/TravelHeader';
+import SmoothScroll from '../../components/SmoothScroll';
+import TravelFooter from '../../components/travel/TravelFooter';
 import Pilar2Content from '../../components/budaya/Pilar2Content';
 ---
 
-<BaseLayout
-	title="Pilar 2: Seni Pertunjukan & Bunyi - jogjakarsa.id"
-	description="Gerak tubuh klasik sebagai meditasi kinetik dan gamelan sebagai logika bunyi yang mengatur ritme semesta dan ketenangan jiwa."
+<TravelLayout
+	title="Pilar 2: Seni Pertunjukan & Bunyi | Panduan budaya Jogjakarsa"
+	description="Kenali tari klasik, gamelan, dan seni pertunjukan Jogja sebagai inspirasi pengalaman budaya selama perjalanan. Panduan perjalanan Jogjakarsa."
 >
-	<SiteNavbar client:load />
+	<SmoothScroll client:load />
+	<TravelHeader pathname={Astro.url.pathname} client:load />
 
-	<main class="relative isolate">
+	<a href="#main-content" class="jk-skip-link">Lewati ke konten utama</a>
+	<main id="main-content" class="jk-culture relative isolate">
 		<Pilar2Content client:load />
-		<SiteFooter client:load />
+
 	</main>
-</BaseLayout>
+	<TravelFooter />
+</TravelLayout>

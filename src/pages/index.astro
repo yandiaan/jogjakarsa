@@ -1,26 +1,4 @@
 ---
-import HeroSection from '../components/HeroSection';
-import PhilosophySection from '../components/PhilosophySection';
-import PillarsSection from '../components/PillarsSection';
-import SiteFooter from '../components/SiteFooter';
-import SiteNavbar from '../components/SiteNavbar';
-import SmoothScroll from '../components/SmoothScroll';
-import TerritoryBento from '../components/TerritoryBento';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import HomePage from '../components/travel/HomePage.astro';
 ---
-
-<BaseLayout
-	title="jogjakarsa.id"
-	description="Landing page digital heritage Jogja dengan nuansa pameran seni digital yang interaktif dan elegan."
->
-	<SmoothScroll client:load />
-	<SiteNavbar client:load />
-
-	<main class="relative isolate">
-		<HeroSection client:load />
-		<PhilosophySection client:idle />
-		<TerritoryBento client:idle />
-		<PillarsSection client:idle />
-		<SiteFooter client:idle />
-	</main>
-</BaseLayout>
+<HomePage />

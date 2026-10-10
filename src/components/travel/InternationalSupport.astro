@@ -1,0 +1,20 @@
+---
+const { language = 'id' } = Astro.props;
+const en = language === 'en';
+const support = en ? [
+ ['An English-speaking guide', 'Request someone to explain local stories and accompany your visits. A separate service from driving.'],
+ ['An English-speaking driver', 'Request a driver who can communicate in English during transfers. Language ability and availability need confirmation.'],
+ ['Arrival at YIA', 'Add a one-way airport transfer to your draft. Flight details, meeting point, and pickup time are reviewed before a final quote.'],
+] : [
+ ['Guide berbahasa Inggris', 'Minta pendamping untuk menjelaskan cerita lokal selama kunjungan. Layanan terpisah dari pengemudi.'],
+ ['Pengemudi berbahasa Inggris', 'Minta pengemudi yang bisa berkomunikasi dalam bahasa Inggris selama perjalanan. Kemampuan bahasa dan ketersediaan perlu dikonfirmasi.'],
+ ['Penjemputan di YIA', 'Tambahkan transfer bandara satu arah ke draf. Detail penerbangan, titik temu, dan waktu penjemputan ditinjau sebelum penawaran final.'],
+];
+---
+<section class="jk-section international-section" id="international">
+ <div class="jk-shell">
+  <div class="jk-section-heading" data-reveal><p class="jk-kicker">{en ? 'Visiting from overseas' : 'Untuk wisatawan mancanegara'}</p><h2>{en ? 'Your local connection.' : 'Datang dari mana pun.'}<br /><em>{en ? 'Before you arrive in Jogja.' : 'Kenali Jogja dengan bantuan lokal.'}</em></h2><p>{en ? 'Yogyakarta is in Java, Indonesia. Our planned service combines local experiences with language support and arrival arrangements, all within the Yogyakarta region.' : 'Layanan yang kami bangun membantu wisatawan dari luar Indonesia menikmati Jogja: pengalaman lokal, dukungan bahasa, dan pengaturan kedatangan dalam satu rencana.'}</p></div>
+  <dl class="international-list" data-reveal>{support.map(([title, description]) => <div><dt>{title}</dt><dd>{description}</dd></div>)}</dl>
+  <p class="jk-note">{en ? 'Select these options in the planner to see sample costs. No guide, driver, or airport pickup has been confirmed. Accommodation and international flights are excluded.' : 'Pilih opsi ini di planner untuk melihat biaya simulasi. Guide, pengemudi, dan penjemputan belum dikonfirmasi. Penginapan serta penerbangan internasional belum termasuk.'}</p>
+ </div>
+</section>

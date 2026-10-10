@@ -3,7 +3,7 @@ import type { SubSection } from './pilar1';
 export const pilar6Data = {
   title: "Pilar 6: Etos & Perilaku Sosial (Manusia Jogja)",
   subtitle: "Manusia Jogja",
-  description: "Filosofi Hamemayu Hayuning Bawono, gotong royong, dan empati (Tepo Seliro) yang menjaga harmoni ekosistem komunal. Sebuah sistem nilai yang membentuk karakter manusia Yogyakarta sebagai penjaga keindahan semesta.",
+  description: "Kenali gotong royong, tepo seliro, dan kebiasaan sosial untuk berkunjung dengan lebih menghargai kehidupan lokal.",
   heroImage: "https://images.unsplash.com/photo-1518398046578-8cca57782e17?auto=format&fit=crop&q=80&w=2000",
   sections: [
     {

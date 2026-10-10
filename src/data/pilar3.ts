@@ -3,7 +3,7 @@ import type { SubSection } from './pilar1';
 export const pilar3Data = {
   title: "Pilar 3: Tata Busana & Kriya (Ageman & Kriya)",
   subtitle: "Ageman & Kriya",
-  description: "Goresan malam yang menjadi narasi takdir, penyatuan elemen kosmik dalam sebilah baja, dan memilin kawat menjadi jiwa peradaban.",
+  description: "Kenali batik, keris, dan kerajinan perak Kotagede untuk memahami karya serta proses pembuatannya.",
   heroImage: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&q=80&w=2000",
   sections: [
     {

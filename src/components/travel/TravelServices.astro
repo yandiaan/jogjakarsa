@@ -1,0 +1,25 @@
+---
+import { copy, type Language } from '../../lib/travel/locale';
+const { language = 'id' } = Astro.props as { language?: Language };
+const t = (text: string) => copy(language, text);
+const services = [
+ ['Itinerary sesuai kebutuhan', 'Rencana harian berdasarkan durasi, jumlah peserta, dan minat budaya, kuliner, atau alam. Demo awal menyediakan trip 1–3 hari.'],
+ ['Aktivitas lokal', 'Pilihan kunjungan dan pengalaman dari katalog awal, seperti Taman Sari, Prambanan, dan workshop batik. Harga demo perlu dikonfirmasi.'],
+ ['Mobil dan pengemudi', 'Transportasi selama trip masuk dalam estimasi sesuai jumlah hari. Koordinasi kendaraan dan ketersediaan menjadi bagian layanan yang direncanakan.'],
+ ['Penawaran yang diperiksa tim', 'Pada layanan aktif, tim akan meninjau rute, kebutuhan khusus, harga, serta mitra sebelum kamu menyetujui penawaran. Tahap ini belum tersedia di demo.'],
+];
+---
+<section id="layanan" class="jk-section">
+ <div class="jk-shell services-grid">
+  <div class="services-intro" data-reveal>
+   <p class="jk-kicker">{t("Yang kami bantu urus")}</p>
+   <h2>{t("Satu rencana untuk")}<br /><em>{t("trip Jogja kamu.")}</em></h2>
+   <p>{t("Untuk pasangan, keluarga, dan kelompok teman yang ingin perjalanan sesuai selera, dengan bantuan menyusun rute dan mengurus kebutuhan di Jogja.")}</p>
+   <p class="services-status">{t("Sekarang: coba planner, simpan itinerary, dan unduh estimasi. Pemesanan serta pembayaran belum aktif.")}</p>
+  </div>
+  <div data-reveal>
+   <dl class="services-list">{services.map(([title, description], index) => <div><span class="service-number" aria-hidden="true">0{index + 1}</span><div class="service-body"><dt>{t(title)}</dt><dd>{t(description)}</dd></div></div>)}</dl>
+   <p class="services-cost">{t("Model biaya: aktivitas + mobil dan pengemudi + biaya pengurusan yang ditampilkan terpisah. Penginapan dan transportasi menuju Jogja belum termasuk.")}</p>
+  </div>
+ </div>
+</section>

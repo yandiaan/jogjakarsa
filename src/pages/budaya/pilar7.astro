@@ -1,18 +1,22 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import SiteNavbar from '../../components/SiteNavbar';
-import SiteFooter from '../../components/SiteFooter';
+import TravelLayout from '../../layouts/TravelLayout.astro';
+import TravelHeader from '../../components/travel/TravelHeader';
+import SmoothScroll from '../../components/SmoothScroll';
+import TravelFooter from '../../components/travel/TravelFooter';
 import Pilar7Content from '../../components/budaya/Pilar7Content';
 ---
 
-<BaseLayout
-	title="Pilar 7: Seni Kontemporer & Kreatif - jogjakarsa.id"
-	description="Ekosistem kreatif independen, dari seni jalanan mural, film indie, hingga intervensi cahaya digital pada arsitektur sejarah yang menghidupkan tradisi Yogyakarta di era modern."
+<TravelLayout
+	title="Pilar 7: Seni Kontemporer & Kreatif | Panduan budaya Jogjakarsa"
+	description="Kenali mural, film, dan seni kontemporer yang menjadi bagian dari kehidupan kreatif Jogja. Panduan perjalanan Jogjakarsa."
 >
-	<SiteNavbar client:load />
+	<SmoothScroll client:load />
+	<TravelHeader pathname={Astro.url.pathname} client:load />
 
-	<main class="relative isolate">
+	<a href="#main-content" class="jk-skip-link">Lewati ke konten utama</a>
+	<main id="main-content" class="jk-culture relative isolate">
 		<Pilar7Content client:load />
-		<SiteFooter client:load />
+
 	</main>
-</BaseLayout>
+	<TravelFooter />
+</TravelLayout>

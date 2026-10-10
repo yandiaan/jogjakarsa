@@ -1,19 +1,22 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import SiteNavbar from '../../components/SiteNavbar';
-import SiteFooter from '../../components/SiteFooter';
+import TravelLayout from '../../layouts/TravelLayout.astro';
+import TravelHeader from '../../components/travel/TravelHeader';
+import TravelFooter from '../../components/travel/TravelFooter';
 import SmoothScroll from '../../components/SmoothScroll';
 import Pilar1Content from '../../components/budaya/Pilar1Content';
 ---
 
-<BaseLayout
-	title="Pilar 1: Arsitektur & Tata Ruang - jogjakarsa.id"
-	description="Manifesto spasial dari Sumbu Filosofis, arsitektur keraton, hingga mahakarya litikum yang merefleksikan tatanan sosial dan kosmologi Jogja."
+<TravelLayout
+	title="Pilar 1: Arsitektur & Tata Ruang | Panduan budaya Jogjakarsa"
+	description="Kenali Sumbu Filosofis, arsitektur keraton, dan tata ruang Jogja sebelum memilih tempat yang ingin dikunjungi. Panduan perjalanan Jogjakarsa."
 >
-	<SiteNavbar client:load />
+	<SmoothScroll client:load />
+	<TravelHeader pathname={Astro.url.pathname} client:load />
 
-	<main class="relative isolate">
+	<a href="#main-content" class="jk-skip-link">Lewati ke konten utama</a>
+	<main id="main-content" class="jk-culture relative isolate">
 		<Pilar1Content client:load />
-		<SiteFooter client:load />
+
 	</main>
-</BaseLayout>
+	<TravelFooter />
+</TravelLayout>
