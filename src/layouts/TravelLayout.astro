@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/travel.css';
 
 interface Props {
 	title: string;
@@ -10,24 +11,29 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="id" class="bg-mist text-ink">
+<html lang="id" class="bg-night text-mist">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="/prambanan-sunrise.webp" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#08111f" />
+		<meta name="theme-color" content="#111311" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
 		<title>{title}</title>
 	</head>
-	<body class="min-h-screen bg-mist text-ink antialiased selection:bg-clay selection:text-mist">
+	<body class="travel-site min-h-screen bg-night text-mist antialiased selection:bg-sun/30 selection:text-mist">
+		<div aria-hidden="true" class="story-grain pointer-events-none fixed inset-0 z-[100]"></div>
 		<slot />
 	</body>
 </html>

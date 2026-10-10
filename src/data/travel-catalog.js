@@ -1,4 +1,12 @@
 export const travelCatalog = [
+ {
+  id: 'nglanggeran', name: 'Jelajah Nglanggeran', area: 'Gunungkidul', duration: '3 jam', category: 'Alam',
+  price: 100000, pricing: 'per_person', description: 'Jalan kaki di kawasan gunung api purba dengan waktu istirahat.'
+ },
+ {
+  id: 'pantai', name: 'Jeda di pantai selatan', area: 'Gunungkidul', duration: '3 jam', category: 'Alam',
+  price: 75000, pricing: 'per_person', description: 'Menikmati pesisir dengan ritme santai. Lokasi disesuaikan kondisi perjalanan.'
+ },
 	{
 		id: 'taman-sari',
 		name: 'Jelajah Taman Sari',
@@ -62,7 +70,7 @@ export const travelCatalog = [
 ];
 
 export const tripTemplates = {
-	budaya: ['taman-sari', 'prambanan', 'batik', 'kuliner'],
-	kuliner: ['kuliner', 'taman-sari', 'batik', 'kotagede'],
-	alam: ['prambanan', 'kuliner', 'batik', 'taman-sari'],
+ budaya: ['taman-sari', 'prambanan', 'batik'],
+ kuliner: ['kuliner', 'kotagede', 'taman-sari'],
+ alam: ['nglanggeran', 'pantai', 'kuliner'],
 };

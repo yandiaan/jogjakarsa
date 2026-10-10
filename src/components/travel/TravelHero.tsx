@@ -1,31 +1,59 @@
-import { ArrowDown, MapPin } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Pause, Play } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ensureGsapPlugins, gsap, prefersReducedMotion } from '../../lib/gsap';
 
 export default function TravelHero() {
-	return (
-		<section id="top" className="relative isolate overflow-hidden bg-ink px-6 pb-16 pt-36 md:px-10 md:pb-20 md:pt-44 lg:px-16 lg:pb-28">
-			<div className="absolute inset-0 -z-20">
-				<img src="/prambanan-sunrise.webp" alt="Prambanan pada pagi hari" className="h-full w-full object-cover opacity-55" fetchPriority="high" />
-				<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,17,31,0.98)_0%,rgba(8,17,31,0.82)_42%,rgba(8,17,31,0.3)_100%)]" />
-			</div>
-			<div aria-hidden="true" className="absolute bottom-0 left-[8%] top-0 -z-10 w-px bg-sun/55" />
-			<div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(18rem,0.5fr)] lg:items-end">
-				<div>
-					<p className="text-sm font-bold text-sun">Perjalanan personal di Daerah Istimewa Yogyakarta</p>
-					<h1 className="mt-5 max-w-3xl font-display text-6xl leading-[0.84] text-mist sm:text-7xl lg:text-[6.5rem]">Jogja, sesuai cara kamu menjalaninya.</h1>
-					<p className="mt-7 max-w-xl text-lg leading-relaxed text-mist/78">
-						Mulai dari rasa ingin tahu, bukan paket jadi. Kami bantu menyusun perjalanan budaya, kuliner, dan tempat yang punya cerita—dengan ritme yang sesuai untukmu.
-					</p>
-					<div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-						<a href="#rencana" className="inline-flex min-h-12 items-center justify-center gap-2 bg-sun px-5 py-3 text-sm font-bold text-ink transition-colors hover:bg-mist">Mulai susun perjalanan <ArrowDown className="h-4 w-4" aria-hidden="true" /></a>
-						<p className="text-sm text-mist/60">Contoh rute dan estimasi tersedia untuk dicoba.</p>
-					</div>
-				</div>
-				<div className="border-l border-mist/25 pl-5 text-sm text-mist/72 sm:max-w-sm lg:mb-3">
-					<MapPin className="h-5 w-5 text-sun" aria-hidden="true" />
-					<p className="mt-4 leading-relaxed">Kota Yogyakarta · Sleman · Bantul · Kulon Progo · Gunungkidul</p>
-					<p className="mt-2 text-mist/48">Rute dibuat dari pengalaman lokal yang sedang kami kurasi.</p>
-				</div>
-			</div>
-		</section>
-	);
+ const scope = useRef<HTMLElement>(null);
+ const video = useRef<HTMLVideoElement>(null);
+ const [playing, setPlaying] = useState(false);
+ useEffect(() => {
+  if (prefersReducedMotion()) return;
+  let mounted = true;
+  video.current?.play().then(() => { if (mounted) setPlaying(true); }).catch(() => undefined);
+  ensureGsapPlugins();
+  const context = gsap.context(() => {
+   gsap.from('.hero-enter', { y: 30, opacity: 0, duration: 1.2, stagger: 0.14, ease: 'power3.out' });
+   gsap.fromTo('.hero-film', { scale: 0.92, borderRadius: 32 }, {
+    scale: 1, borderRadius: 8, ease: 'none',
+    scrollTrigger: { trigger: '.hero-film', start: 'top 90%', end: 'top 15%', scrub: 1 },
+   });
+  }, scope);
+  return () => { mounted = false; context.revert(); };
+ }, []);
+ const toggleVideo = async () => {
+  if (!video.current) return;
+  if (video.current.paused) {
+   try { await video.current.play(); setPlaying(true); } catch { setPlaying(false); }
+  } else { video.current.pause(); setPlaying(false); }
+ };
+ return (
+  <section id="top" className="jk-hero" ref={scope}>
+   <div className="jk-shell jk-hero-intro">
+    <p className="jk-kicker hero-enter">Perjalanan personal, berakar di Jogja</p>
+    <h1 className="hero-enter">Jogja punya cerita.<br /><em>Temukan bagianmu.</em></h1>
+    <p className="jk-hero-description hero-enter">Budaya, rasa, dan tempat yang ingin kamu kenal. Kami bantu menyusun semuanya menjadi perjalanan yang terasa milikmu.</p>
+    <div className="jk-actions hero-enter">
+     <a className="jk-button" href="#rencana">Rancang perjalanan <ArrowUpRight size={17} aria-hidden="true" /></a>
+     <a className="jk-text-link" href="#cara-kerja">Lihat cara kerjanya <ArrowDown size={15} aria-hidden="true" /></a>
+    </div>
+   </div>
+   <div className="jk-shell">
+    <div className="hero-film">
+     <video ref={video} muted loop playsInline preload="metadata" poster="/prambanan-sunrise.webp" onPause={() => setPlaying(false)} onPlay={() => setPlaying(true)} aria-label="Pemandangan Jogja dari udara">
+      <source src="/video/drone-footage.webm" type="video/webm" />
+     </video>
+     <div className="hero-film-shade" />
+     <div className="hero-film-caption"><span>Lebih dekat dengan Jogja.</span><p>Pelan-pelan. Dengan rasa ingin tahu.</p></div>
+     <div className="hero-route-card" aria-label="Contoh perjalanan">
+      <div className="route-card-top"><span>Perjalananmu berikutnya</span><ArrowUpRight size={17} aria-hidden="true" /></div>
+      <h2>Sehari, banyak cerita.</h2>
+      <div className="hero-route-stops"><span>Taman Sari</span><i /><span>Kotagede</span><i /><span>Kuliner malam</span></div>
+      <p>Contoh rute · Budaya & kuliner</p>
+     </div>
+     <button type="button" className="film-control" onClick={toggleVideo} aria-label={playing ? 'Jeda video Jogja' : 'Putar video Jogja'}>{playing ? <Pause size={16} /> : <Play size={16} />}</button>
+    </div>
+    <div className="hero-scope"><span>Fokus di Daerah Istimewa Yogyakarta</span><span>Rute personal <b>·</b> Estimasi terbuka <b>·</b> Ditinjau manusia</span></div>
+   </div>
+  </section>
+ );
 }

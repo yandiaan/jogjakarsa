@@ -108,7 +108,7 @@ export default function HeroSection() {
 				id="top"
 				ref={sectionRef}
 				className="relative"
-				style={{ height: '400vh' }}
+					style={{ height: prefersReducedMotion() ? '100svh' : '240svh' }}
 			>
 				<div className="sticky top-0 h-screen overflow-hidden" style={{ contain: 'layout paint' }}>
 
@@ -224,7 +224,7 @@ export default function HeroSection() {
 						</div>
 						<div ref={metaRightRef} className="text-right" style={{ transform: 'translate3d(0,0,0)', willChange: 'transform' }}>
 							<p className="text-[0.58rem] uppercase tracking-[0.32em] text-mist/38">Mode</p>
-							<p className="mt-0.5 font-display text-sm text-mist/55">Exhibition Mode</p>
+								<p className="mt-0.5 font-display text-sm text-mist/55">Perjalanan personal</p>
 						</div>
 					</div>
 
@@ -255,24 +255,24 @@ export default function HeroSection() {
 						<div className="relative mx-auto w-full max-w-7xl grid gap-10 px-6 py-12 md:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-16 lg:py-16">
 							{/* Left column */}
 							<div className="space-y-6 text-center lg:text-left">
-								<p className="eyebrow">Digital Heritage Exhibition</p>
+								<p className="eyebrow">Perjalanan personal · Yogyakarta</p>
 								<div className="cinematic-copy space-y-5">
 									<h1 className="font-display text-5xl leading-[0.84] text-mist sm:text-6xl lg:text-[5.8rem] xl:text-[7rem]">
-										Jogja Karsa
+										Jogja, dengan<br />cara kamu.
 									</h1>
 									<p className="mx-auto max-w-3xl text-base leading-relaxed text-mist/76 lg:mx-0 lg:text-[1.08rem]">
-										"Setiap sudut Jogja menyimpan warisan yang tidak selesai di masa lalu, melainkan terus hidup sebagai pengalaman yang bisa dipandang, dibaca, dan dirasakan kembali."
+										Dari cerita di balik candi sampai rasa di sudut kota. Susun perjalanan budaya, kuliner, dan pengalaman lokal dengan ritme yang pas untukmu.
 									</p>
 								</div>
 								<div className="flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
 									<a
-										href="#jogja"
+										href="#rencana"
 										className="inline-flex items-center justify-center rounded-full bg-mist px-6 py-3 text-sm font-semibold text-ink transition-transform duration-300 hover:-translate-y-0.5"
 									>
-										Masuk ke Pameran
+										Susun perjalananmu
 									</a>
 									<div className="glass-pill inline-flex items-center justify-center rounded-full px-5 py-3 text-sm text-mist/76">
-										Pelestarian budaya dalam format interaktif
+										Budaya · Kuliner · Pengalaman lokal
 									</div>
 								</div>
 							</div>
@@ -285,7 +285,7 @@ export default function HeroSection() {
 
 						{/* Scroll down cue — pinned to bottom */}
 						<a
-							href="#sejarah"
+							href="#cara-kerja"
 							className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[0.62rem] uppercase tracking-[0.28em] text-mist/46 transition-colors hover:text-mist/72"
 						>
 							<span>Scroll ke bawah</span>
